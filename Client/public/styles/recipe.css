@@ -1,0 +1,147 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 15px;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+nav {
+    margin-top: 10px;
+}
+
+nav a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+main {
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+}
+
+.recipe-form {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-form h2 {
+    margin-top: 0;
+}
+
+.recipe-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.recipe-form input,
+.recipe-form select,
+.recipe-form textarea {
+    width: 98%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.recipe-form button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.recipe-form button:hover {
+    background-color: #45a049;
+}
+
+.recipe-list {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-list h2 {
+    margin-top: 0;
+}
+
+.recipe-item {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.recipe-item h3 {
+    margin: 0 0 10px;
+}
+
+.recipe-media img, .recipe-media video {
+    max-width: 100%;
+    margin-top: 10px;
+}
+
+.edit-recipe,
+.delete-recipe {
+    background-color: #f0ad4e;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.delete-recipe {
+    background-color: #d9534f;
+}
+
+.rating-review {
+    margin-top: 10px;
+}
+
+.rating-review label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.rating-review select,
+.rating-review textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.submit-review {
+    background-color: #5bc0de;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.reviews-list {
+    margin-top: 15px;
+    padding-left: 0;
+    list-style-type: none;
+}

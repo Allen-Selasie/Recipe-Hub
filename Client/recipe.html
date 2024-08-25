@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Management | Recipe Hub</title>
+    <link rel="stylesheet" href="recipe.css">
+</head>
+<body>
+    <header>
+        <h1>Recipe Management</h1>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Profile</a>
+            <a href="#">Logout</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="recipe-form">
+            <h2>Upload New Recipe</h2>
+            <form id="recipeForm">
+                <label for="title">Recipe Title:</label>
+                <input type="text" id="title" name="title" required>
+
+                <label for="title">Category:</label>
+                <input type="text" id="category" name="category" required>
+
+                <label for="ingredients">Ingredients:</label>
+                <textarea id="ingredients" name="ingredients" required></textarea>
+
+                <label for="instructions">Cooking Instructions:</label>
+                <textarea id="instructions" name="instructions" required></textarea>
+
+                <label for="prepTime">Preparation Time:</label>
+                <input type="text" id="prepTime" name="prepTime" required>
+
+                <label for="difficulty">Difficulty Level:</label>
+                <select id="difficulty" name="difficulty" required>
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
+                </select>
+
+                <label for="tags">Dietary Tags:</label>
+                <input type="text" id="tags" name="tags">
+
+                <label for="media">Upload Photos/Videos:</label>
+                <input type="file" id="media" name="media" multiple>
+
+                <button type="submit">Submit Recipe</button>
+            </form>
+        </section>
+
+        <section class="recipe-list">
+            <h2>Your Recipes</h2>
+            <ul id="recipeList">
+                <!-- Recipes will be dynamically loaded here -->
+            </ul>
+        </section>
+    </main>
+
+    <template id="recipeTemplate">
+        <li class="recipe-item">
+            <h3 class="recipe-title"></h3>
+            <p><strong>Ingredients:</strong> <span class="recipe-ingredients"></span></p>
+            <p><strong>Instructions:</strong> <span class="recipe-instructions"></span></p>
+            <p><strong>Prep Time:</strong> <span class="recipe-prepTime"></span></p>
+            <p><strong>Difficulty:</strong> <span class="recipe-difficulty"></span></p>
+            <p><strong>Tags:</strong> <span class="recipe-tags"></span></p>
+            <div class="recipe-media"></div>
+            <button class="edit-recipe">Edit</button>
+            <button class="delete-recipe">Delete</button>
+            <div class="rating-review">
+                <label for="rating">Rate this recipe:</label>
+                <select class="rating" name="rating">
+                    <option value="1">1 Star</option>
+                    <option value="2">2 Stars</option>
+                    <option value="3">3 Stars</option>
+                    <option value="4">4 Stars</option>
+                    <option value="5">5 Stars</option>
+                </select>
+                <label for="review">Leave a Review:</label>
+                <textarea class="review" name="review"></textarea>
+                <button class="submit-review">Submit Review</button>
+            </div>
+            <ul class="reviews-list">
+                <!-- Reviews will be dynamically loaded here -->
+            </ul>
+        </li>
+    </template>
+
+    <script src="recipe.js"></script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    padding: 20px;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo img {
+    width: 60px;
+    height: auto;
+}
+
+.logo-text {
+    margin-left: 10px;
+}
+
+.create-button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-left: auto;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.hero {
+    background-image: url('https://png.pngtree.com/thumb_back/fh260/20170803/pngtree-Food-Menu-Fare-Meal-background-photo-869492.jpg');
+    background-size: contain; /* Ensures the image is not stretched and retains clarity */
+    background-repeat: no-repeat;
+    background-position: center;
+    text-align: center;
+    color: white;
+    padding: 120px 20px;
+    margin-top: 10px;
+    width: 100%;
+    height: 200px; /* Adjust height as needed to balance image visibility */
+   
+}
+
+
+.recipe-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 200px;
+}
+
+.recipe-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 250px;
+}
+
+.recipe-card .recipe-image {
+    width: 100%;
+    height: 50%;
+    border-bottom: 1px solid #ddd;
+}
+
+.recipe-icons {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+}
+
+.recipe-icons .left-icons {
+    display: flex;
+}
+
+.recipe-icons .material-icons {
+    font-size: 24px;
+    color: #252222;
+    margin-right: 10px;
+}
+
+.recipe-icons .save {
+    margin-left: auto;
+}
+
+.recipe-info {
+    padding: 10px 15px;
+}
+
+.recipe-info h3 {
+    margin: 0;
+    font-size: 1.1em;
+    color: #333;
+}
+
+.recipe-details {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    color: #757575;
+    font-size: 0.9em;
+}
+
+.recipe-details .material-icons {
+    font-size: 18px;
+    margin-right: 5px;
+    color: #ee9106;
+}
+
+.rating {
+    margin-top: 5px;
+    color: #ffa500;
+    font-size: 0.9em;
+} 
