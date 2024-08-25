@@ -30,6 +30,10 @@ app.get("/",(req,res)=>{
     res.render("index");
 })
 
+app.get("/login",(req,res)=>{
+  res.render("registration")
+})
+
 app.listen("2000",()=>{
     console.log("app is listenind on port 2000!!")
 })
