@@ -1,10 +1,10 @@
 {
-  "name": "recipe-philip",
+  "name": "recipe-hub",
   "version": "1.0.0",
-  "main": "/Server/app.js",
+  "main": "Server/app.js",
   "scripts": {
     "start":" node Server/app.js"
-     },
+    },
   "keywords": [],
   "author": "",
   "license": "ISC",
