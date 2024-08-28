@@ -15,7 +15,7 @@
                 <button id="login-toggle" class="active" onclick="toggleForm('login')">Log In</button>
                 <button id="signup-toggle" onclick="toggleForm('signup')">Sign Up</button>
             </div>
-            <form id="login-form" class="form">
+            <form id="login-form" action="/u/login" method="post" class="form">
                 
                 <h2>Log In</h2>
                 <div class="input-group">
@@ -36,7 +36,7 @@
                 <button type="submit">Log In</button>
                 <p class="not-member">Not a member? <strong>Sign Up</strong></p>
             </form>
-            <form id="signup-form" class="form hidden">
+            <form id="signup-form" action="/u/create" method="post" class="form hidden">
                 <h2>Sign Up</h2>
                 <div class="input-group">
                     <span class="material-icons">person</span>
@@ -53,7 +53,7 @@
                 </div>
                 <div class="input-group">
                     <span class="material-icons">lock</span>
-                    <input type="password" name="confirm-password" placeholder="Confirm Password" required>
+                    <input type="password" name="confirm" placeholder="Confirm Password" required>
                 </div>
                 <button type="submit">Sign Up</button>
                 <p class="already-member">Already have an Account? <strong>Log In</strong></p>

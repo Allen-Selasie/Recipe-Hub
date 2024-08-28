@@ -1,8 +1,21 @@
 const express = require('express');
 const app = express();
 const session = require("express-session")
-const path = require("path")
+const path = require("path");
+const UserRoutes = require('./routes/userRoutes');
+const mongoose =  require('mongoose');
+const Card = require('./models/cards');
+const requireLogin = require('./Middleware/authMiddleware');
+require('dotenv').config();
+const MongoStore = require('connect-mongo');
 
+const mongouri = process.env.mongouri;
+
+
+mongoose.connect(mongouri,{
+  maxPoolSize:100,
+  dbName:"recipe_hub"
+})
 // Configure Express to handle JSON data
 app.use(express.json());
 
@@ -19,26 +32,34 @@ app.use(express.static(path.join(__dirname, "../Client/public")));
 
 //session management
 app.use(
-    session({
-      secret: "Recipe_stuff",
-      resave: false,
-      saveUninitialized: true,
-    })
-  );
+  session({
+    secret: "recipe-hub",
+    resave: false,
+    saveUninitialized: true,
+    store: MongoStore.create({
+      mongoUrl: mongouri,
+      dbName:"recipe_hub"
+    }),
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 1, // 1 day
+    },
+  })
+);
+
   
-app.get("/",(req,res)=>{
-  const recipies =  require("./stuff.json");
-    res.render("index",{recipies});
+app.get("/",async (req,res)=>{
+  const recipies = await Card.find();
+  res.render("index",{recipies});
 })
 
-app.get("/login",(req,res)=>{
-  const name = "Philip"
-  res.render("sidebar",{name})
+app.get("/home",requireLogin,async(req,res)=>{
+  const user = req.session.user;
+  res.render("home",{username:user.username})
 })
 
-app.get("/",(req,res)=>{
-  
-})
+
+
+app.use("/u",UserRoutes)
 
 app.listen("2000",()=>{
     console.log("app is listenind on port 2000!!")
