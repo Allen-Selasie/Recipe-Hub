@@ -1,0 +1,94 @@
+[
+    {
+        "title": "Chocolate Cake",
+        "image": "https://mrbrownbakery.com/image/images/GJ7uCwGiteTF24HTWBclkziVTdhpQeZWH23MvQfq.jpeg?p=full",
+        "description": "A rich and moist chocolate cake with a smooth chocolate frosting. (From Belgium)"
+      },
+      {
+        "title": "Apple Pie",
+        "image": "https://www.rainbownourishments.com/wp-content/uploads/2021/08/best-vegan-apple-pie-1.jpg",
+        "description": "A classic apple pie with a flaky crust and a cinnamon-spiced apple filling. (From USA)"
+      },
+      {
+        "title": "Cheesecake",
+        "image": "https://www.biggerbolderbaking.com/wp-content/uploads/2022/04/No-Bake-Strawberry-Cheesecake-thumbnail-scaled.jpg",
+        "description": "Creamy cheesecake with a graham cracker crust, topped with fresh berries. (From Italy)"
+      },
+      {
+        "title": "Sushi",
+        "image": "https://miro.medium.com/v2/resize:fit:4000/1*yGK9jD35goWdn3XtRq9y4Q.jpeg",
+        "description": "A Japanese dish consisting of vinegared rice topped with various ingredients such as seafood and vegetables. (From Japan)"
+      },
+      {
+        "title": "Paella",
+        "image": "https://images.immediate.co.uk/production/volatile/sites/30/2018/06/Oven-paella-5d16b06.jpg?resize=768,574",
+        "description": "A Spanish rice dish originally from Valencia. It typically contains seafood, chicken, and various spices. (From Spain)"
+      },
+      {
+        "title": "Tacos",
+        "image": "https://images.immediate.co.uk/production/volatile/sites/30/2022/10/Pork-carnitas-b94893e.jpg?quality=90&resize=556,505",
+        "description": "A traditional Mexican dish consisting of a corn or wheat tortilla folded or rolled around a filling, often including meat, cheese, and vegetables. (From Mexico)"
+      },
+      {
+        "title": "Garlic Bread",
+        "image": "https://ichef.bbci.co.uk/food/ic/food_16x9_832/recipes/hasselback_garlic_bread_79835_16x9.jpg",
+        "description": "Crunchy garlic bread with a hint of parsley. (From Italy)"
+      },
+      {
+        "title": "Mashed Potatoes",
+        "image": "https://www.allrecipes.com/thmb/2_95a2zaO47Hxy8Xz6KDzlPYZ3U=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/24771-basic-mashed-potatoes-mfs321-158e1626bfeb48daadb4f25d737ffee91-912ba4ee2c3c40a1837a5690971cc554.jpg",
+        "description": "Creamy mashed potatoes seasoned to perfection. (From USA)"
+      },
+      {
+        "title": "Grilled Vegetables",
+        "image": "https://www.cooksdelight.com/wp-content/uploads/2019/11/Grilled-marinated-vegetables-using-Cooks-Delight-Roasted-Garlic-Concentrate-900x600.png",
+        "description": "Assorted grilled vegetables with a drizzle of balsamic glaze. (From Greece)"
+      },
+      {
+        "title": "Hamburger",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTENYnRh013tE7LrJCY-j0pTDFoJzJZtAx8qw&s",
+        "description": "A classic American hamburger with beef patty, lettuce, tomato, and cheese. (From USA)"
+      },
+      {
+        "title": "Pizza",
+        "image": "https://www.foodnetwork.com/content/dam/images/food/fullset/2016/9/22/0/FNK_Cheeseburger-Pizza_s4x3.jpg",
+        "description": "Delicious pizza with a variety of toppings on a thin crust. (From Italy)"
+      },
+      {
+        "title": "Burrito",
+        "image": "https://img.freepik.com/premium-photo/tasty-mexican-food-with-fresh-avocado-sauce-burittos-tacos-chilli-con-carne-wooden-table_974629-92340.jpg",
+        "description": "A Mexican burrito filled with rice, beans, meat, cheese, and salsa. (From Mexico)"
+      },
+      {
+        "title": "Caprese Salad",
+        "image": "https://images.themodernproper.com/billowy-turkey/production/posts/2021/Caprese-Salad-7.jpeg?w=800&h=418&q=82&fm=jpg&fit=crop&dm=1629344391&s=d5da207d02359b18ac97355236489268",
+        "description": "A refreshing Italian salad with tomatoes, mozzarella, basil, and balsamic glaze. (From Italy)"
+      },
+      {
+        "title": "Vegetarian Chili",
+        "image": "https://joyfoodsunshine.com/wp-content/uploads/2022/01/vegetarian-chili-recipe-square.jpg",
+        "description": "Hearty chili made with beans, tomatoes, and spices. (From USA)"
+      },
+      {
+        "title": "Stuffed Bell Peppers",
+        "image": "https://cravingtasty.com/wp-content/uploads/2019/04/Stuffed-Bell-Peppers.jpg",
+        "description": "Bell peppers filled with quinoa, vegetables, and cheese. (From Greece)"
+      },
+      {
+        "title": "Grilled Steak",
+        "image": "https://www.mychicagosteak.com/steak-university/wp-content/uploads/2017/03/400474_TBone-Steak-Fired-Up.jpg",
+        "description": "Juicy steak seasoned and grilled to perfection. (From USA)"
+      },
+      {
+        "title": "Chicken Curry",
+        "image": "https://gypsyplate.com/wp-content/uploads/2024/02/chicken-curry_square.jpg",
+        "description": "Spicy and aromatic chicken curry with rice. (From India)"
+      },
+      {
+        "title": "Seafood Paella",
+        "image": "https://www.unileverfoodsolutions.co.za/dam/global-ufs/mcos/SOUTH-AFRICA/calcmenu/recipes/ZA-recipes/project-glug-glug/smoked-seafood-paella-header.jpg",
+        "description": "A Spanish rice dish with a variety of seafood. (From Spain)"
+      }
+    ]
+  
+  

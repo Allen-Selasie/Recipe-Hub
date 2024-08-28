@@ -27,11 +27,17 @@ app.use(
   );
   
 app.get("/",(req,res)=>{
-    res.render("index");
+  const recipies =  require("./stuff.json");
+    res.render("index",{recipies});
 })
 
 app.get("/login",(req,res)=>{
-  res.render("registration")
+  const name = "Philip"
+  res.render("sidebar",{name})
+})
+
+app.get("/",(req,res)=>{
+  
 })
 
 app.listen("2000",()=>{

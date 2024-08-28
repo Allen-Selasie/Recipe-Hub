@@ -307,3 +307,8 @@ body.dark .switch::before{
     left: 88px;
     width:calc(100% - 88px) ;
 }
+
+
+#home{
+    display:none;
+}

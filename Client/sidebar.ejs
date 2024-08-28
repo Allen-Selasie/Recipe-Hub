@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE-edge"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipe Sharing Platform</title>
-    <link rel="stylesheet" href="sidebar.css"> 
+    <link rel="stylesheet" href="/styles/sidebar.css"> 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 <body>
@@ -13,7 +13,7 @@
         <header>
             <div class="image-text">
                 <span class="image">
-                    <img src="rh-high-resolution-logo-transparent.png" alt="logo">
+                    <img src="/images/rh-high-resolution-logo-transparent.png" alt="logo">
                 </span>
 
                 <div class="text header-text">
@@ -33,7 +33,7 @@
                 </li>
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="#" onclick="Appear(this)">
                             <i class='bx bx-home-alt icon'></i>
                             <span class="text nav-text">Home</span>
                         </a>
@@ -50,12 +50,7 @@
                             <span class="text nav-text">Profile</span>
                         </a>
                     </li>
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-chat icon'></i>
-                            <span class="text nav-text">Chats</span>
-                        </a>
-                    </li>
+
                     <li class="nav-link">
                         <a href="#">
                             <i class='bx bx-cog icon'></i>
@@ -94,12 +89,25 @@
         </div>
    </nav>
     
-     <section class="home">
+     <section class="home" id="home">
+        <div class="text">Home</div>
+     </section>
+     <section class="home" id="home">
+        <div class="text">Home</div>
+     </section>
+     <section class="home" id="home">
         <div class="text">Home</div>
      </section>
 
-   <script src="side.js"></script>
-   
+   <script src="/scripts/side.js"></script>
+   <script>
+    var home = document.getElementById("home")
+    function Appear(location){
+        
+            home.style.display = "block";
+        
+    }
+   </script>
 </body>  
 </html>
        
