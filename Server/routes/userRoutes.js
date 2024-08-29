@@ -173,7 +173,7 @@ UserRoutes.post("/forgotPassword", async (req, res) => {
         await user.save();
 
         // Compose the reset password email
-        const resetPasswordLink = `localhost:2000/u/reset/${token}`;
+        const resetPasswordLink = `${req.protocol}://${req.get("host")}/u/reset/${token}`;
         const message = {
             html: `<p>Click the following link to reset your password:</p><a href="${resetPasswordLink}">${resetPasswordLink}</a>`,
             text: `Copy and paste the following link in your browser to reset your password: ${resetPasswordLink}`,
