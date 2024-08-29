@@ -20,7 +20,7 @@ const transporter = nodemailer.createTransport({
   async function sendMail(contact, message) {
     try {
       const info = await transporter.sendMail({
-        from: '"RAIDTECH SOFTWARE SOLUTIONS" <raidtechprogrammers@gmail.com>',
+        from: '"RECIPE HUB" <raidtechprogrammers@gmail.com>',
         replyTo: "raidtechprogrammers@gmail.com",
         to: contact,
         ...message, // spread the rest of message properties
