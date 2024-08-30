@@ -2,19 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE-edge"> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipe Sharing Platform</title>
-    <link rel="stylesheet" href="/styles/sidebar.css">
-        <link rel="stylesheet" href="styles/loader.css">
+    <link rel="stylesheet" href="/styles/save.css"> 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
-    <!-- loader -->
-    <div id="loading-modal" class="loading-modal">
-        <div class="loader"></div>
-    </div>
-    <nav class ="sidebar close">
+    <nav class="sidebar close">
         <header>
             <div class="image-text">
                 <span class="image">
@@ -33,37 +30,36 @@
         <div class="menu-bar">
             <div class="menu">
                 <li class="search-box">
-                        <i class='bx bx-search icon'></i>
-                           <input type="text" placeholder="Search...">
+                    <i class='bx bx-search icon'></i>
+                    <input type="text" placeholder="Search...">
                 </li>
                 <ul class="menu-links">
                     <li class="nav-link">
-                        <a href="#" onclick="Appear(this)">
+                        <a href="#" onclick="Tabs(0)">
                             <i class='bx bx-home-alt icon'></i>
                             <span class="text nav-text">Home</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="#" onclick="Tabs(0)" class="Tab active">
                             <i class='bx bxs-dish icon'></i>
                             <span class="text nav-text">Discover</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="#" onclick="Tabs(1)" class="Tab">
                             <i class='bx bx-user-circle icon'></i>
                             <span class="text nav-text">Profile</span>
                         </a>
                     </li>
-
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="#" onclick="Tabs(2)" class="Tab">
                             <i class='bx bx-cog icon'></i>
                             <span class="text nav-text">Settings</span>
                         </a>
                     </li>
                     <li class="nav-link">
-                        <a href="#">
+                        <a href="#" onclick="Tabs(3)" class="Tab">
                             <i class='bx bx-help-circle icon'></i>
                             <span class="text nav-text">Help</span>
                         </a>
@@ -73,7 +69,7 @@
 
             <div class="bottom-content">
                 <li class="">
-                    <a href="/u/logout">
+                    <a href="logout.html">
                         <i class='bx bx-log-out icon'></i>
                         <span class="text nav-text">Logout</span>
                     </a>
@@ -92,29 +88,373 @@
                 </li>
             </div>
         </div>
-   </nav>
-        
-     <section class="home" id="home">
-        <div class="text">Hello <%=username %>,</div>
-        <div class="text">Home</div>
+    </nav>
+
+    <section id="discover-section" class="all-section">
+        <div class="discover merge">
+    <header class="discover-head">
+    <div class="logo">
+ </div>       <img src="https://www.shutterstock.com/image-vector/cutlery-icon-spoon-forks-knife-600nw-1931212061.jpg" alt="Cutlery Icon">
+        <div class="logo-text">
+            <p><strong>Cook Smart</strong></p>
+            <p><strong>Eat Well</strong></p>
+        </div>
+    </div>
+    <a href="recipe.html">
+        <button class="create-button">Create Recipe</button>
+    </a>
+    </header>
+    
+    <section class="hero">
+    <h1>Delicious Recipes</h1>
+    <p>Explore our collection of amazing recipes from around the world!</p>
+    </section>
+    
+    <section class="category-section">
+    <div class="category-button">
+        <img src="https://media.hswstatic.com/eyJidWNrZXQiOiJjb250ZW50Lmhzd3N0YXRpYy5jb20iLCJrZXkiOiJnaWZcL2Rlc3NlcnRzLXVwZGF0ZS5qcGciLCJlZGl0cyI6eyJyZXNpemUiOnsid2lkdGgiOjgyOH19fQ==" a</div>lt="Desserts Icon" class="category-icon">
+        <span class="category-text">Desserts</span>
+    </div>
+    <div class="category-button">
+        <img src="https://icebergdriveinn.com/cdn/shop/articles/Fast-Food-How-It-Has-Evolved-in-the-Past-Decades.jpg?v=1625683335" alt="Fast Foods Icon" class="category-icon">
+        <span class="category-text">Fast Foods</span>
+    </div>
+    <div class="category-button">
+        <img src="https://post.healthline.com/wp-content/uploads/2021/08/tofu-salad-pineapple-quinoa-vegan-meal-1296x728-header.png" alt="Vegetarians Icon" class="category-icon">
+        <span class="category-text">Vegetarians</span>
+    </div>
+    <div class="category-button">
+        <img src="https://banarastrip.com/wp-content/uploads/2023/09/Best-Non-Veg-Restaurants-in-Varanasi-1000x565.png" alt="Non-Vegetarians Icon" class="category-icon">
+        <span class="category-text">Non Vegetarians</span>
+    </div><div class="category-button">
+        <img src="https://www.smokingchimney.com/recipe-pages/images/16x9/english-breakfast.jpg" alt="Breakfast Icon" class="category-icon">
+        <span class="category-text">Breakfast</span>
+    </div>
+    <div class="category-button">
+        <img src="https://static01.nyt.com/newsgraphics/2021/10/18/food-sidesgiving/assets/images/211011_nyt_sidesgivingcover_21521-460_x2.jpg" alt="Side Dishes Icon" class="category-icon">
+        <span class="category-text">Side Dishes</span>
+    </div>
+    <div class="category-button">
+        <img src="https://recipes.net/wp-content/uploads/2024/02/what-is-the-meaning-of-continental-food-1707445151.jpg" alt="Continental Food Icon" class="category-icon">
+        <span class="category-text">Continental Foods</span>
+    </div>
+    </section>
+    
+    <div class="recipe-container">
+    <!-- Existing recipe cards here -->
+    <div class="recipe-card">
+        <div class="recipe-image-container">
+            <img src="https://www.allrecipes.com/thmb/qZ7LKGV1_RYDCgYGSgfMn40nmks=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/AR-24878-bbq-chicken-pizza-beauty-4x3-39cd80585ad04941914dca4bd82eae3d.jpg" alt="Gourmet BBQ Chicken Pizza" class="recipe-image">
+            <button class="view-more">View More</button>
+        </div>
+        <div class="recipe-icons">
+            <div class="left-icons">
+                <i class="material-icons">comment</i>
+                <i class="material-icons">favorite_border</i>
+                <i class="material-icons">share</i>
+            </div>
+            <i class="material-icons save">bookmark_border</i>
+        </div>
+        <div class="recipe-info">
+            <h3>Gourmet BBQ Chicken Pizza</h3>
+            <div class="recipe-details">
+                <i class="material-icons">schedule</i>
+                <p>30 min</p>
+                <i class="material-icons cooking-icon">restaurant_menu</i> <!-- Cooking icon -->
+            <p class="difficulty">Easy</p> <!-- Cooking difficulty -->
+            </div>
+            <div class="rating">⭐⭐⭐⭐⭐ (122)</div>
+        </div>
+    </div>
+    
+    
+    <div class="recipe-card">
+        <div class="recipe-image-container">
+            <img src="https://www.allrecipes.com/thmb/Vg2cRidr2zcYhWGvPD8M18xM_WY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/11973-spaghetti-carbonara-ii-DDMFS-4x3-6edea51e421e4457ac0c3269f3be5157.jpg" alt="Classic Spaghetti Carbonara" class="recipe-image">
+            <button class="view-more">View More</button>
+        </div>
+          <div class="recipe-icons">
+            <div class="left-icons">
+                <i class="material-icons">comment</i>
+                <i class="material-icons">favorite_border</i>
+                <i class="material-icons">share</i>
+            </div>
+            <i class="material-icons save">bookmark_border</i>
+        </div>
+        <div class="recipe-info">
+            <h3>Classic Spaghetti Carbonara</h3>
+            <div class="recipe-details">
+                <i class="material-icons">schedule</i>
+                <p>20 min</p>
+                <i class="material-icons cooking-icon">restaurant_menu</i> <!-- Cooking icon -->
+                <p class="difficulty">Medium</p> <!-- Cooking difficulty -->
+            </div>
+            <div class="rating">⭐⭐⭐⭐⭐ (71)</div>
+        </div>
+    </div>
+    
+    <div class="recipe-card">
+        <div class="recipe-image-container">
+            <img src="https://www.foodandwine.com/thmb/DI29Houjc_ccAtFKly0BbVsusHc=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/crispy-comte-cheesburgers-FT-RECIPE0921-6166c6552b7148e8a8561f7765ddf20b.jpg" alt="Gourmet Burger" class="recipe-image">
+            <button class="view-more">View More</button>
+        </div>
+          <div class="recipe-icons">
+            <div class="left-icons">
+                <i class="material-icons">comment</i>
+                <i class="material-icons">favorite_border</i>
+                <i class="material-icons">share</i>
+            </div>
+            <i class="material-icons save">bookmark_border</i>
+        </div>
+        <div class="recipe-info">
+            <h3>Gourmet Burger</h3>
+            <div class="recipe-details">
+                <i class="material-icons">schedule</i>
+                <p>30 min</p>
+                <i class="material-icons cooking-icon">restaurant_menu</i> <!-- Cooking icon -->
+                <p class="difficulty">Hard</p> <!-- Cooking difficulty -->
+            </div>
+            <div class="rating">⭐⭐⭐⭐⭐ (54)</div>
+        </div>
+    </div>
+    
+    <div class="recipe-card">
+        <div class="recipe-image-container">
+            <img src="https://static.vecteezy.com/system/resources/previews/033/527/131/non_2x/crispy-and-succulent-salmon-fillet-recipe-for-oven-cooking-creating-using-generative-ai-tools-photo.jpeg" alt="Succulent Salmon Fillets" class="recipe-image">
+            <button class="view-more">View More</button>
+        </div>
+         <div class="recipe-icons">
+            <div class="left-icons">
+                <i class="material-icons">comment</i>
+                <i class="material-icons">favorite_border</i>
+                <i class="material-icons">share</i>
+            </div>
+            <i class="material-icons save">bookmark_border</i>
+        </div>
+        <div class="recipe-info">
+            <h3>Succulent Salmon Fillets</h3>
+            <div class="recipe-details">
+                <i class="material-icons">schedule</i>
+                <p>25 min</p>
+                <i class="material-icons cooking-icon">restaurant_menu</i> <!-- Cooking icon -->
+                <p class="difficulty">Easy</p> <!-- Cooking difficulty -->
+            </div>
+            <div class="rating">⭐⭐⭐⭐⭐ (89)</div>
+        </div>
+    </div>
+    </div> 
+        </div>
      </section>
-     <section class="home" id="home">
-        <div class="text">Home</div>
-     </section>
-     <section class="home" id="home">
-        <div class="text">Home</div>
+    
+    <section id="profile-section" class="all-section">
+        <div class="profile merge">
+          <div class="profile-container">
+            <div class="profile-header">
+                <div class="profile-image">
+                    <img src="photo_2024-08-29_19-52-10.jpg" width="200" alt="Profile Image">
+                    <i class="fa fa-camera"></i>
+                </div>
+                <div class="profile-nav-info">
+                    <h3 class="user-name">Gershwin Bokordedzi</h3>
+                    <div class="address">
+                        <p class="state"> Accra</p>
+                        <span class="country"> Ghana</span>
+                    </div>
+                </div>
+                <div class="profile-option">
+                    <div class="notification">
+                        <i class="fa fa-bell"></i>
+                        <span class="alert-message">1</span>
+                    </div>
+                </div>
+            </div>
+            <div class="main-body">
+                <div class="left-side">
+                    <div class="profile-side">
+                        <p class="mobile-number"><i class="fa fa-phone"></i>0505702355</p>
+                        <p class="user-mail">
+                            <i class="fa fa-envelope"></i>yhung@gmail.com
+                        </p>
+                        <div class="user-bio">
+                            <h3>Bio</h3>
+                            <p class="bio">
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, nemo? A officia nam dolore nihil praesentium totam autem, rem, vitae laborum libero recusandae voluptatibus nostrum ducimus ea porro nisi laboriosam.
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam iusto eaque voluptatum dicta harum. Accusamus labore autem impedit, sed quidem nemo laborum voluptas, inventore, eligendi odio voluptatem voluptatibus explicabo sit!
+                            </p>
+                        </div>
+                        <div class="profile-button">
+                            <button class="chat-button"><i class="fa fa-comment"></i>Message</button>
+                            <button class="create-button">
+                                <i></i>Follow 
+                            </button>
+                        </div>
+                        <div class="user-rating">
+                            <h3 class="rating"></h3>
+                            <div class="rate">
+                                <div class="stars">
+                                <i></i>
+                                <i></i>
+                                <i></i>
+                                <i></i>
+                                <i></i>
+                                <i></i>
+                                </div>
+                                <span class="no-user">
+                                    <span></span>&nbsp; &nbsp; 
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Tabs-->
+                <div class="right-side">
+                    <div class="nav">
+                        <ul>
+                            <li onclick="togs(0)" class="user-post active">Post</li>
+                            <li onclick="togs(1)" class="user-recipe ">Saved Recipe</li>
+                            <li onclick="togs(2)" class="user-information ">Personal Info</li>
+                        </ul>
+                    </div>
+                    <div class="right-container">
+                    <div class="profile-body">
+                        <div class="profile-posts tog">
+                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum, corrupti minima iusto expedita quis culpa recusandae consequatur temporibus quaerat reiciendis vero optio labore at beatae molestias! Mollitia praesentium inventore deserunt. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore deleniti magnam error eum consectetur aliquid nihil, quas assumenda magni voluptas sit, ipsam architecto modi distinctio doloremque, dolor mollitia commodi perferendis! Perspiciatis ullam aut nulla dolorum esse veritatis quaerat non, quod voluptate enim cum corrupti debitis dignissimos eius illum corporis sunt atque consequuntur tenetur facere minima necessitatibus amet consectetur! Aspernatur tempora dolores animi similique assumenda alias officiis qui, libero vero consectetur.</p>
+                        </div>
+                        <div class="profile-review tog">
+                            
+                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus odit, quas incidunt temporibus culpa, modi ullam similique expedita, voluptatem nemo nesciunt laudantium. Ab asperiores minus ad sunt quos laboriosam expedita nam dolor delectus dicta saepe ex molestiae quas, at aperiam natus alias voluptatum iure quibusdam itaque hic. Fugit quod nesciunt odit fuga dolorem voluptatem ad obcaecati asperiores voluptate, accusamus deserunt doloribus molestias itaque vitae blanditiis est officia recusandae vero? Vitae?</p>
+                            </div>
+                            <div class="profile-information tog" >
+                                <div class="profile-box">
+                                    
+                                    <h2 class="label">Username</h2> 
+                                    <input type="text" class="input" placeholder="Username">
+                                    <h2 class="label name">Name</h2>
+                                    <input type="text" class="input" placeholder="Name"></div>
+                                    <h2 class="label gender">Gender</h2> 
+                                    <input type="text" class="input" placeholder="Gender">
+                                    <h2 class="label bio">Bio</h2> 
+                                    <textarea class="input" placeholder="Bio"></textarea>    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
      </section>
 
-   <script src="/scripts/side.js"></script>
-   <script>
-    var home = document.getElementById("home")
-    function Appear(location){
-        
-            home.style.display = "block";
-        
-    }
-   </script>
-<script src="scripts/loader.js"></script>
-</body>  
+    <section id="settings-section" class="all-section">
+        <div class="settings merge">
+         <div class="container">
+             <div class="leftbox">
+                 <nav>
+                     <a onclick="tabs(0)" class="tab active">
+                         <i class="fa fa-user"></i>
+                     </a>
+                     <a onclick="tabs(1)" class="tab">
+                         <i class="fa fa-shield"></i>
+                     </a>
+                     <a onclick="tabs(2)" class="tab">
+                         <i class="fa fa-bars"></i>
+                     </a>
+                     <a onclick="tabs(3)" class="tab">
+                         <i class="fa fa-users"></i>
+                     </a>
+                 </nav>
+             </div>
+             <div class="rightbox">
+                 <div class="account tabShow">
+                     <h1>Account Settings</h1>
+                     <h2>Password</h2>
+                     <p>Change Password <a href="change.html"><button class="button">Change</button></a></p>
+                     <h2>Email</h2>
+                     <p>Manage Email <a href="email.html"><button class="button">Update</button></a></p>
+                     <h2>Contact</h2>
+                     <p>Update Contact <a href="contact.html"><button class="button">Update</button></a></p>
+                     <h2>Account</h2>
+                     <p>Delete Account <a href="delete.html"><button class="button">Delete</button></a></p>
+                 </div>
+                 <div class="privacy tabShow">
+                     <h1>Privacy Info</h1>
+                     <h1>Recipes</h1>
+                     <h2>Public</h2>
+                     <p style="display: flex; align-items: center;">All users (including those who aren’t logged in) can view the user's recipes.
+                         <input type="radio" class="radio" value="" style="margin-left: 20px;">
+                    </p>
+                    <h2>Private</h2>
+                    <p style="display: flex; align-items: center;"> Only users who are connected to the person (e.g., friends or followers) can see their recipes.  
+                        <input type="radio" class="radio" value="" style="margin-left: 20px;">
+                   </p>
+                   <h1>Profile</h1>
+                   <h2>Public</h2>
+                   <p style="display: flex; align-items: center;">Anyone can view the user's profile, including their bio, profile picture, and any other public information.
+                       <input type="radio" class="radio" value="" style="margin-left: 20px;">
+                  </p>
+                  <h2>Private</h2>
+                  <p style="display: flex; align-items: center;"> Only users who are connected to the person (e.g., friends or followers) can view profile.  
+                      <input type="radio" class="radio" value="" style="margin-left: 20px;">
+                 </p>
+                 </div>
+                 <div class="preference tabShow">
+                     <h1>App Preference</h1>
+                     <button class="btn">Update</button>
+                 </div>
+                 <div class="about tabShow">
+                     <h1>About Us</h1>
+                     <p>Welcome to Recipe Hub – your ultimate destination for culinary creativity
+                         , inspiration, and community!<br>
+                         At Recipe Hub, we believe that cooking is more than just preparing meals;
+                          it's a way to connect, explore cultures, and create memorable experiences.<br>
+                          <br>
+                           Founded on the passion for sharing delicious recipes and fostering a love for food,
+                            our mission is to bring together home cooks, food enthusiasts, 
+                            and professional chefs from around the world.,<br> 
+                            <br>
+                            Our Vision:
+                            We envision a world where everyone has access to delicious,
+                             nutritious, and easy-to-make recipes that bring joy to their tables.
+                              By fostering a supportive and inclusive environment,
+                               Recipe Hub aims to inspire creativity in the kitchen
+                                and make cooking a delightful part of everyday life.<br>
+                                <br>
+                            Join Us:
+                            Whether you're a seasoned chef, a budding home cook, or someone who simply loves good food,
+                             Recipe Hub welcomes you. Dive into our collection, share your culinary creations,
+                              and be part of a community that celebrates the art of cooking together.<br>
+                              <br>
+                            Thank you for being a part of Recipe Hub. 
+                            Let's cook, share, and savor the wonderful journey of food together!</p>
+                 </div>
+             </div>
+         </div> 
+          </section>
+     
+
+    <section id="help-section" class="all-section">
+        <h1>Help Section</h1>
+        <p>This is the help section where users can find support and answers to their questions.</p>
+    </section>
+
+    <script>
+        function Tabs(tabIndex) {
+            const sections = document.querySelectorAll('.all-section');
+            sections.forEach((section, index) => {
+                if (index === tabIndex) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // Set the default tab to display
+            Tabs(0);
+        });
+    </script>
+</body>
 </html>
+
        
