@@ -5,8 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipe Hub - Home</title>
     <link rel="stylesheet" href="/styles/styles.css">
+        <link rel="stylesheet" href="styles/loader.css">
 </head>
 <body>
+    <!-- loader -->
+    <div id="loading-modal" class="loading-modal">
+        <div class="loader"></div>
+    </div>
     <!-- Header Section -->
     <header class="header">
         <div class="auth-buttons">
@@ -20,7 +25,7 @@
         <div class="hero-content">
             <h1>Welcome to Recipe Hub</h1>
             <p>Your ultimate destination for delicious recipes and culinary inspiration.</p>
-            <a href="#" class="cta-button">Get Started</a>
+            <a href="#" class="cta-button" id="startLoading">Get Started</a>
         </div>
     </section>
 
@@ -87,5 +92,6 @@
     </footer>
 
     <script src="/styles/script.js"></script>
+<script src="scripts/loader.js"></script>
 </body>
 </html>
