@@ -317,14 +317,18 @@ body.dark .switch::before{
 
 
 /* Settings */
+.settings{
+    display: flex;
+    justify-content: center;
+}
+
 .container{
   background: white;
-  width: 790px;
+  width: 900px;
   height: 570px;
-  margin: 0 auto;
   position: relative;
+  border-radius: 5px;
   margin-top: 4%;
-  margin-left: 50px;
   box-shadow: 2px 5px 20px rgba(119,119,119,.5);
   }
   
@@ -333,19 +337,24 @@ body.dark .switch::before{
     top: -3%;
     left: 5%;
     position: absolute;
-    width: 15%;
+    width: 10%;
     height: 105%;
+    border-radius: 5px;
     background: #2ed573;
     box-shadow: 2px 5px 20px rgba(119,119,119,.5);
     border: .1em solid #fff;
   }
 
   .leftbox nav a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     list-style: none;
-    padding: 45px;
+    padding: 45px 20px;
     color: #fff;
     font-size: 1.1em;
-    display: block;
+    /* display: block; */
     transition: all .3s ease-in-out;
   }
 
