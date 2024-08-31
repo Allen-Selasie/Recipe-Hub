@@ -9,6 +9,100 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- newly added code -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script src="https://unpkg.com/unlazy@0.11.3/dist/unlazy.with-hashing.iife.js" defer init></script>
+    <script type="text/javascript">
+        window.tailwind.config = {
+            darkMode: ['class'],
+            theme: {
+                extend: {
+                    colors: {
+                        border: 'hsl(var(--border))',
+                        input: 'hsl(var(--input))',
+                        ring: 'hsl(var(--ring))',
+                        background: 'hsl(var(--background))',
+                        foreground: 'hsl(var(--foreground))',
+                        primary: {
+                            DEFAULT: 'hsl(var(--primary))',
+                            foreground: 'hsl(var(--primary-foreground))'
+                        },
+                        secondary: {
+                            DEFAULT: 'hsl(var(--secondary))',
+                            foreground: 'hsl(var(--secondary-foreground))'
+                        },
+                        destructive: {
+                            DEFAULT: 'hsl(var(--destructive))',
+                            foreground: 'hsl(var(--destructive-foreground))'
+                        },
+                        muted: {
+                            DEFAULT: 'hsl(var(--muted))',
+                            foreground: 'hsl(var(--muted-foreground))'
+                        },
+                        accent: {
+                            DEFAULT: 'hsl(var(--accent))',
+                            foreground: 'hsl(var(--accent-foreground))'
+                        },
+                        popover: {
+                            DEFAULT: 'hsl(var(--popover))',
+                            foreground: 'hsl(var(--popover-foreground))'
+                        },
+                        card: {
+                            DEFAULT: 'hsl(var(--card))',
+                            foreground: 'hsl(var(--card-foreground))'
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer base {
+    				:root {
+    					--background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+    --radius: 0.5rem;
+    				}
+    				.dark {
+    					--background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+    				}
+    			}
+    		</style>
 </head>
 <body>
     <nav class="sidebar close">
@@ -249,7 +343,7 @@
     <section id="profile-section" class="all-section">
         <div class="profile merge">
           <div class="profile-container">
-            <div class="profile-header">
+            <!-- <div class="profile-header">
                 <div class="profile-image">
                     <img src="photo_2024-08-29_19-52-10.jpg" width="200" alt="Profile Image">
                     <i class="fa fa-camera"></i>
@@ -307,7 +401,7 @@
                     </div>
                 </div>
                 <!--Tabs-->
-                <div class="right-side">
+                <!-- <div class="right-side">
                     <div class="nav">
                         <ul>
                             <li onclick="togs(0)" class="user-post active">Post</li>
@@ -338,6 +432,102 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </div> -->
+                <div class="flex flex-col md:flex-row bg-background p-6 rounded-lg shadow-lg">
+                    <div class="flex-shrink-0 mb-6 md:mb-0 md:mr-6">
+                        <img id="profileImage" src="https://openui.fly.dev/openui/100x100.svg?text=👤" alt="Profile Image"
+                            class="w-24 h-24 rounded-full border-4 border-primary shadow-lg" />
+                        <button id="editBtn"
+                            class="bg-accent text-accent-foreground hover:bg-accent/80 mt-2 p-2 rounded-full shadow-md transition duration-200">
+                            <span class="material-icons">edit</span>
+                        </button>
+                    </div>
+                    <div class="flex-grow max-w-72">
+                        <h1 id="profileName" class="text-3xl font-bold text-foreground">GERSHWIN BOKORDEDZI</h1>
+                        <p id="profileLocation" class="text-muted-foreground text-lg">Accra, Ghana</p>
+                        <p id="profilePhone" class="text-muted-foreground mt-2 mobile-number"><i class="fa fa-phone"></i> 0505702355</p>
+                        <p id="profileEmail" class="text-muted-foreground user-mail"><i class="fa fa-envelope"></i> yhung@gmail.com</p>
+                        <h2 class="mt-4 text-xl font-semibold text-primary">Bio</h2>
+                        <p id="profileBio" class="text-muted-foreground">Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                            Recusandae, nemo? A officia nam dolore nihi... <a href="#" class="text-primary hover:underline">see
+                                more</a></p>
+                        <div class="mt-4 flex space-x-4">
+                            <button
+                                class="bg-accent text-accent-foreground hover:bg-accent/80 p-2 rounded-lg shadow-md transition duration-200 chat-button">Message</button>
+                            <button
+                                class="bg-secondary text-secondary-foreground hover:bg-secondary/80 p-2 rounded-lg shadow-md transition duration-200 create-button">Follow</button>
+                        </div>
+                    </div>
+                    <div class="md:w-1/2 md:ml-6 mt-6 md:mt-0">
+                        <div class="mt-4">
+                            <div class="flex">
+                                <button id="recipeTab"
+                                    class="w-1/2 bg-primary text-primary-foreground hover:bg-primary/80 p-2 rounded-tl-lg shadow-md transition duration-200">Saved
+                                    Recipe</button>
+                                <button id="infoTab"
+                                    class="w-1/2 bg-primary text-primary-foreground hover:bg-primary/80 p-2 rounded-tr-lg shadow-md transition duration-200">Personal
+                                    Info</button>
+                            </div>
+                            <div id="recipeContent" class="bg-card p-4 rounded-b-lg shadow-md mt-0.5">
+                                <h2 class="text-lg font-semibold text-primary">Saved Recipe</h2>
+                                <p class="text-muted-foreground">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam,
+                                    corrupti minima iusto expedita quis culpa recusandae...</p>
+                            </div>
+                            <div id="infoContent" class="hidden bg-card p-4 rounded-b-lg shadow-md mt-0.5">
+                                <h2 class="text-lg font-semibold text-primary">Personal Info</h2>
+                                <p class="text-muted-foreground">📞 0505702355</p>
+                                <p class="text-muted-foreground">✉️ yhung@gmail.com</p>
+                                <p class="text-muted-foreground">Location: Accra, Ghana</p>
+                                <p class="text-muted-foreground">Bio: Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Modal -->
+                <div id="editModal" class="fixed inset-0 hidden bg-gray-500 bg-opacity-75 flex items-center justify-center">
+                    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+                        <h2 class="text-xl font-semibold text-primary mb-4">Edit Personal Info</h2>
+                        <form id="editForm">
+                            <div class="mb-4">
+                                <label class="block text-sm font-medium text-gray-700">Profile Photo</label>
+                                <input type="file" id="imageInput" class="mt-1 block w-full" />
+                                <img id="modalImagePreview" src="https://openui.fly.dev/openui/100x100.svg?text=👤"
+                                    alt="Profile Image Preview" class="w-24 h-24 mt-4 rounded-full border-4 border-primary shadow-lg" />
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-sm font-medium text-gray-700">Name</label>
+                                <input type="text" id="nameInput" value="GERSHWIN BOKORDEDZI"
+                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" />
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-sm font-medium text-gray-700">Location</label>
+                                <input type="text" id="locationInput" value="Accra, Ghana"
+                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" />
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-sm font-medium text-gray-700">Phone</label>
+                                <input type="text" id="phoneInput" value="0505702355"
+                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" />
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-sm font-medium text-gray-700">Email</label>
+                                <input type="email" id="emailInput" value="yhung@gmail.com"
+                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" />
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-sm font-medium text-gray-700">Bio</label>
+                                <textarea id="bioInput"
+                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit...</textarea>
+                            </div>
+                            <div class="flex justify-end space-x-2">
+                                <button type="button" id="cancelBtn"
+                                    class="bg-gray-300 text-gray-700 hover:bg-gray-400 px-4 py-2 rounded-lg">Cancel</button>
+                                <button type="submit" id="saveBtn"
+                                    class="bg-primary text-primary-foreground hover:bg-primary/80 px-4 py-2 rounded-lg">Save</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -454,6 +644,64 @@
             Tabs(0);
         });
     </script>
+    <script type="text/javascript">
+        // Tab switching functionality
+        document.getElementById('recipeTab').addEventListener('click', function () {
+            document.getElementById('recipeContent').classList.remove('hidden');
+            document.getElementById('infoContent').classList.add('hidden');
+        });
+
+        document.getElementById('infoTab').addEventListener('click', function () {
+            document.getElementById('infoContent').classList.remove('hidden');
+            document.getElementById('recipeContent').classList.add('hidden');
+        });
+
+        // Modal functionality
+        document.getElementById('editBtn').addEventListener('click', function () {
+            document.getElementById('editModal').classList.remove('hidden');
+        });
+
+        document.getElementById('cancelBtn').addEventListener('click', function () {
+            document.getElementById('editModal').classList.add('hidden');
+        });
+
+        // Image preview functionality
+        document.getElementById('imageInput').addEventListener('change', function (event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    document.getElementById('modalImagePreview').src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Save button functionality
+        document.getElementById('editForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent the form from submitting in the traditional way
+
+            // Get values from the form inputs
+            const name = document.getElementById('nameInput').value;
+            const location = document.getElementById('locationInput').value;
+            const phone = document.getElementById('phoneInput').value;
+            const email = document.getElementById('emailInput').value;
+            const bio = document.getElementById('bioInput').value;
+            const imageSrc = document.getElementById('modalImagePreview').src;
+
+            // Update the profile information on the main page
+            document.getElementById('profileName').textContent = name;
+            document.getElementById('profileLocation').textContent = location;
+            document.getElementById('profilePhone').textContent = `📞 ${phone}`;
+            document.getElementById('profileEmail').textContent = `✉️ ${email}`;
+            document.getElementById('profileBio').textContent = bio;
+            document.getElementById('profileImage').src = imageSrc;
+
+            // Close the modal
+            document.getElementById('editModal').classList.add('hidden');
+        });
+    </script>
+    
 </body>
 </html>
 

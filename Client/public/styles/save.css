@@ -685,7 +685,7 @@ body.dark .switch::before{
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 77%;
+    width: 85%;
     margin-left: 3%;
 }
 
@@ -837,12 +837,14 @@ body.dark .switch::before{
     color: #4caf50;
     margin-right: 10px;
 }
-.mobile-number i {
+.mobile-number i,.user-mail i {
+    color: #4caf50;
     transform: rotateY('180deg');
 }
 .profile-button {
     display: flex;
 }
+
 button.chat-button,
 button.create-button {
 border: 0;
@@ -856,7 +858,7 @@ margin: 5px 2px;
 cursor: pointer;
 outline: none;
 margin-bottom: 7px;
-transition: background .3s ease-in-out;
+transition: 0.3s ease;
 box-shadow: 0px 5px 7px 0px rgba(0,0,0,.3);
 color: #fff;
 }
