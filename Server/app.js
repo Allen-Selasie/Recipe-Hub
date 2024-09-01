@@ -10,6 +10,7 @@ require('dotenv').config();
 const MongoStore = require('connect-mongo');
 
 const mongouri = process.env.mongouri;
+const port = process.env.PORT || 3000;
 
 
 mongoose.connect(mongouri,{
@@ -61,6 +62,6 @@ app.get("/home",requireLogin,async(req,res)=>{
 
 app.use("/u",UserRoutes)
 
-app.listen("2000",()=>{
-    console.log("app is listenind on port 2000!!")
+app.listen(port,()=>{
+    console.log(`app is listenind on port ${port}!!`);
 })

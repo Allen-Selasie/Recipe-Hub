@@ -254,4 +254,10 @@ UserRoutes.get("/reset/:token", async (req, res) => {
     }
 });
 
+
+UserRoutes.get("/my-recipes", requireLogin, (req, res) => {
+    const user = req.session.user;
+    res.render("recipe", { user });
+});
+
 module.exports = UserRoutes;
