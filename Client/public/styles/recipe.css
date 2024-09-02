@@ -59,6 +59,17 @@ main {
     border: 1px solid #ccc;
 }
 
+.recipe-form .prepTime{
+    width: 40%;
+    display: flex;
+    align-items: center;
+}
+
+
+.prepTime #prepMinutes{
+    margin-left: 70px;
+}
+
 .recipe-form button {
     background-color: #4CAF50;
     color: white;

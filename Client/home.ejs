@@ -102,102 +102,220 @@
     --ring: 240 4.9% 83.9%;
     				}
     			}
-    		</style>
+    </style>
 </head>
 <body>
-    <nav class="sidebar close">
-        <header>
-            <div class="image-text">
-                <span class="image">
-                    <img src="/images/rh-high-resolution-logo-transparent.png" alt="logo">
-                </span>
-
-                <div class="text header-text">
-                    <span class="name">RecipeHub</span>
-                    <span class="slogan">Eat Well</span>
-                </div>
+   <nav class="sidebar close">
+    <header>
+        <div class="image-text">
+            <span class="image">
+                <img src="/images/rh-high-resolution-logo-transparent.png" alt="logo">
+            </span>
+            <div class="text header-text">
+                <span class="name">RecipeHub</span>
+                <span class="slogan">Eat Well</span>
             </div>
+        </div>
+        <i class='bx bx-chevron-right toggle'></i>
+    </header>
 
-            <i class='bx bx-chevron-right toggle'></i>
-        </header>
-
-        <div class="menu-bar">
-            <div class="menu">
-                <li class="search-box">
-                    <i class='bx bx-search icon'></i>
-                    <input type="text" placeholder="Search...">
-                </li>
-                <ul class="menu-links">
-                    <li class="nav-link">
-                        <a href="#" onclick="Tabs(0)">
-                            <i class='bx bx-home-alt icon'></i>
-                            <span class="text nav-text">Home</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="#" onclick="Tabs(0)" class="Tab active">
-                            <i class='bx bxs-dish icon'></i>
-                            <span class="text nav-text">Discover</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="#" onclick="Tabs(1)" class="Tab">
-                            <i class='bx bx-user-circle icon'></i>
-                            <span class="text nav-text">Profile</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="#" onclick="Tabs(2)" class="Tab">
-                            <i class='bx bx-cog icon'></i>
-                            <span class="text nav-text">Settings</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="#" onclick="Tabs(3)" class="Tab">
-                            <i class='bx bx-help-circle icon'></i>
-                            <span class="text nav-text">Help</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="bottom-content">
-                <li class="">
-                    <a href="logout.html">
-                        <i class='bx bx-log-out icon'></i>
-                        <span class="text nav-text">Logout</span>
+    <div class="menu-bar">
+        <div class="menu">
+            <li class="search-box">
+                <i class='bx bx-search icon'></i>
+                <input type="text" placeholder="Search...">
+            </li>
+            <ul class="menu-links">
+                <li class="nav-link">
+                    <a href="#" onclick="Tabs(0)">
+                        <i class='bx bx-home-alt icon'></i>
+                        <span class="text nav-text">Home</span>
                     </a>
                 </li>
-    
-                <li class="mode">
-                    <div class="moon-sun">
-                        <i class='bx bx-moon icon moon'></i>
-                        <i class='bx bx-sun icon sun'></i>
-                    </div>
-                    <span class="mode-text text">Dark Mode</span>
-    
-                    <div class="toggle-switch">
-                        <span class="switch"></span>
-                    </div>
+                <li class="nav-link">
+                    <a href="#"  onclick="Tabs(0)" class="tab" data-tab="discover">
+                        <i class='bx bxs-dish icon'></i>
+                        <span class="text nav-text">Discover</span>
+                    </a>
                 </li>
-            </div>
+                <li class="nav-link">
+                    <a href="#"  onclick="Tabs(1)" class="tab" data-tab="profile">
+                        <i class='bx bx-user-circle icon'></i>
+                        <span class="text nav-text">Profile</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="#"  onclick="Tabs(2)" class="tab" data-tab="settings">
+                        <i class='bx bx-cog icon'></i>
+                        <span class="text nav-text">Settings</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="#" onclick="Tabs(3)" class="tab" data-tab="help">
+                        <i class='bx bx-help-circle icon'></i>
+                        <span class="text nav-text">Help</span>
+                    </a>
+                </li>
+            </ul>
         </div>
-    </nav>
 
-    <section id="discover-section" class="all-section">
-        <div class="discover merge">
-    <header class="discover-head">
-    <div class="logo">
- </div>       <img src="https://www.shutterstock.com/image-vector/cutlery-icon-spoon-forks-knife-600nw-1931212061.jpg" alt="Cutlery Icon">
-        <div class="logo-text">
-            <p><strong>Cook Smart</strong></p>
-            <p><strong>Eat Well</strong></p>
+        <div class="bottom-content">
+            <li class="">
+                <a href="/u/logout">
+                    <i class='bx bx-log-out icon'></i>
+                    <span class="text nav-text">Logout</span>
+                </a>
+            </li>
+
+            <li class="mode">
+                <div class="moon-sun">
+                    <i class='bx bx-moon icon moon'></i>
+                    <i class='bx bx-sun icon sun'></i>
+                </div>
+                <span class="mode-text text">Dark Mode</span>
+
+                <div class="toggle-switch">
+                    <span class="switch"></span>
+                </div>
+            </li>
         </div>
     </div>
-    <a href="/u/my-recipes">
-        <button class="create-button">Create Recipe</button>
-    </a>
-    </header>
+</nav>
+<script>
+    const tabBtn = document.querySelectorAll(".tab");
+    const tab = document.querySelectorAll(".tabShow");
+
+    function tabs(panelIndex) {
+        tab.forEach(function (node) {
+            node.style.display = "none";
+        });
+        tab[panelIndex].style.display = "block"
+
+    }
+    tabs(0)
+</script>
+<script>
+    $(".tab").click(function () {
+        $(this).addClass("active").siblings()
+            .removeClass('active')
+    })
+</script>
+
+<script>
+    // Toggle Sidebar
+    const sidebar = document.querySelector('.sidebar');
+    const toggle = document.querySelector('.toggle');
+
+    toggle.addEventListener('click', () => {
+        sidebar.classList.toggle('close');
+    });
+
+   // Function to handle tab switching
+    function tabs(tabIndex) {
+        // Get all elements with the class 'tabShow'
+        var tabs = document.querySelectorAll('.tabShow');
+
+        // Loop through all tab content elements and hide them
+        tabs.forEach(function (tab, index) {
+            if (index === tabIndex) {
+                tab.style.display = 'block'; // Show the selected tab content
+            } else {
+                tab.style.display = 'none'; // Hide other tab content
+            }
+        });
+
+        // Get all tab buttons and remove the 'active' class
+        var tabButtons = document.querySelectorAll('.tab');
+        tabButtons.forEach(function (tabBtn, index) {
+            if (index === tabIndex) {
+                tabBtn.classList.add('active'); // Add the 'active' class to the clicked tab button
+            } else {
+                tabBtn.classList.remove('active'); // Remove the 'active' class from other tab buttons
+            }
+        });
+    }
+    document.addEventListener('DOMContentLoaded', function () {
+        // Initialize the tabs to show the first tab by default
+        tabs(0);
+    });
+
+    // Handle Dark Mode Toggle
+    const toggleSwitch = document.querySelector('.toggle-switch');
+    const body = document.body;
+    const modeText = document.querySelector('.mode-text');
+
+    toggleSwitch.addEventListener('click', () => {
+        body.classList.toggle('dark');
+        if (body.classList.contains('dark')) {
+            modeText.innerText = 'Light Mode';
+        } else {
+            modeText.innerText = 'Dark Mode';
+        }
+    });
+</script>
+<!-- New user login modal section -->
+<section id="popups" class="">
+    <% if(user.newLogin){ %>
+    <!-- New Login Modal -->
+    <div id="newLoginModal"  class="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md h-full max-h-[90vh] overflow-y-auto">
+            <h2 class="text-xl font-semibold text-primary mb-4">Welcome to RecipeHub!</h2>
+            <form id="newLoginForm" onsubmit="newLogin(event)">
+                <p class="mb-4">Hello, <%=user.username%>, <br> Please take a moment to update your profile information.</p>
+                
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">Name</label>
+                    <input type="text" id="newNameInput" placeholder="Enter your Full Name" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" required />
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">Username</label>
+                    <input type="text" id="newUsernameInput" value="<%=user.username%>" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" required />
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">Location</label>
+                    <input type="text" id="newLocationInput" placeholder="Eg: Kumasi, Ghana" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" />
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">Contact</label>
+                    <input type="text" id="newContactInput" placeholder="Eg: +233000000000" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" />
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="newEmailInput" value="<%=user.email%>" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" required />
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">Bio</label>
+                    <textarea id="newBioInput" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm">Lorem Ipsum.....</textarea>
+                </div>
+                
+                <div class="flex justify-end space-x-2">
+                    <button type="submit" id="newSaveBtn" class="bg-primary text-primary-foreground hover:bg-primary/80 px-4 py-2 rounded-lg">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <% } %>
+</section>
+
+    <section id="discover-section" class="all-section">
+            <div class="discover merge">
+        <header class="discover-head">
+            <div class="logo"> 
+            <img src="https://www.shutterstock.com/image-vector/cutlery-icon-spoon-forks-knife-600nw-1931212061.jpg" alt="Cutlery Icon" />
+                <div class="logo-text">
+                    <p><strong>Cook Smart</strong></p>
+                    <p><strong>Eat Well</strong></p>
+                </div>
+            </div>
+            <a href="/u/my-recipes">
+                <button class="create-button">Create Recipe</button>
+            </a>
+        </header>
     
     <section class="hero">
     <h1>Delicious Recipes</h1>
@@ -205,33 +323,13 @@
     </section>
     
     <section class="category-section">
-    <div class="category-button">
-        <img src="https://media.hswstatic.com/eyJidWNrZXQiOiJjb250ZW50Lmhzd3N0YXRpYy5jb20iLCJrZXkiOiJnaWZcL2Rlc3NlcnRzLXVwZGF0ZS5qcGciLCJlZGl0cyI6eyJyZXNpemUiOnsid2lkdGgiOjgyOH19fQ==" a</div>lt="Desserts Icon" class="category-icon">
-        <span class="category-text">Desserts</span>
-    </div>
-    <div class="category-button">
-        <img src="https://icebergdriveinn.com/cdn/shop/articles/Fast-Food-How-It-Has-Evolved-in-the-Past-Decades.jpg?v=1625683335" alt="Fast Foods Icon" class="category-icon">
-        <span class="category-text">Fast Foods</span>
-    </div>
-    <div class="category-button">
-        <img src="https://post.healthline.com/wp-content/uploads/2021/08/tofu-salad-pineapple-quinoa-vegan-meal-1296x728-header.png" alt="Vegetarians Icon" class="category-icon">
-        <span class="category-text">Vegetarians</span>
-    </div>
-    <div class="category-button">
-        <img src="https://banarastrip.com/wp-content/uploads/2023/09/Best-Non-Veg-Restaurants-in-Varanasi-1000x565.png" alt="Non-Vegetarians Icon" class="category-icon">
-        <span class="category-text">Non Vegetarians</span>
-    </div><div class="category-button">
-        <img src="https://www.smokingchimney.com/recipe-pages/images/16x9/english-breakfast.jpg" alt="Breakfast Icon" class="category-icon">
-        <span class="category-text">Breakfast</span>
-    </div>
-    <div class="category-button">
-        <img src="https://static01.nyt.com/newsgraphics/2021/10/18/food-sidesgiving/assets/images/211011_nyt_sidesgivingcover_21521-460_x2.jpg" alt="Side Dishes Icon" class="category-icon">
-        <span class="category-text">Side Dishes</span>
-    </div>
-    <div class="category-button">
-        <img src="https://recipes.net/wp-content/uploads/2024/02/what-is-the-meaning-of-continental-food-1707445151.jpg" alt="Continental Food Icon" class="category-icon">
-        <span class="category-text">Continental Foods</span>
-    </div>
+        <% categories.forEach(category => { %>
+            <div class="category-button">
+                <img src="<%=category.image%>" alt="<%=category.name%> Icon" class="category-icon">
+                <span class="category-text"><%=category.name%></span>
+                </div>
+        <% }) %>
+   
     </section>
     
     <div class="recipe-container">
@@ -343,100 +441,9 @@
     <section id="profile-section" class="all-section">
         <div class="profile merge">
           <div class="profile-container">
-            <!-- <div class="profile-header">
-                <div class="profile-image">
-                    <img src="photo_2024-08-29_19-52-10.jpg" width="200" alt="Profile Image">
-                    <i class="fa fa-camera"></i>
-                </div>
-                <div class="profile-nav-info">
-                    <h3 class="user-name">Gershwin Bokordedzi</h3>
-                    <div class="address">
-                        <p class="state"> Accra</p>
-                        <span class="country"> Ghana</span>
-                    </div>
-                </div>
-                <div class="profile-option">
-                    <div class="notification">
-                        <i class="fa fa-bell"></i>
-                        <span class="alert-message">1</span>
-                    </div>
-                </div>
-            </div>
-            <div class="main-body">
-                <div class="left-side">
-                    <div class="profile-side">
-                        <p class="mobile-number"><i class="fa fa-phone"></i>0505702355</p>
-                        <p class="user-mail">
-                            <i class="fa fa-envelope"></i>yhung@gmail.com
-                        </p>
-                        <div class="user-bio">
-                            <h3>Bio</h3>
-                            <p class="bio">
-                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, nemo? A officia nam dolore nihil praesentium totam autem, rem, vitae laborum libero recusandae voluptatibus nostrum ducimus ea porro nisi laboriosam.
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam iusto eaque voluptatum dicta harum. Accusamus labore autem impedit, sed quidem nemo laborum voluptas, inventore, eligendi odio voluptatem voluptatibus explicabo sit!
-                            </p>
-                        </div>
-                        <div class="profile-button">
-                            <button class="chat-button"><i class="fa fa-comment"></i>Message</button>
-                            <button class="create-button">
-                                <i></i>Follow 
-                            </button>
-                        </div>
-                        <div class="user-rating">
-                            <h3 class="rating"></h3>
-                            <div class="rate">
-                                <div class="stars">
-                                <i></i>
-                                <i></i>
-                                <i></i>
-                                <i></i>
-                                <i></i>
-                                <i></i>
-                                </div>
-                                <span class="no-user">
-                                    <span></span>&nbsp; &nbsp; 
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--Tabs-->
-                <!-- <div class="right-side">
-                    <div class="nav">
-                        <ul>
-                            <li onclick="togs(0)" class="user-post active">Post</li>
-                            <li onclick="togs(1)" class="user-recipe ">Saved Recipe</li>
-                            <li onclick="togs(2)" class="user-information ">Personal Info</li>
-                        </ul>
-                    </div>
-                    <div class="right-container">
-                    <div class="profile-body">
-                        <div class="profile-posts tog">
-                            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ipsum, corrupti minima iusto expedita quis culpa recusandae consequatur temporibus quaerat reiciendis vero optio labore at beatae molestias! Mollitia praesentium inventore deserunt. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolore deleniti magnam error eum consectetur aliquid nihil, quas assumenda magni voluptas sit, ipsam architecto modi distinctio doloremque, dolor mollitia commodi perferendis! Perspiciatis ullam aut nulla dolorum esse veritatis quaerat non, quod voluptate enim cum corrupti debitis dignissimos eius illum corporis sunt atque consequuntur tenetur facere minima necessitatibus amet consectetur! Aspernatur tempora dolores animi similique assumenda alias officiis qui, libero vero consectetur.</p>
-                        </div>
-                        <div class="profile-review tog">
-                            
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus odit, quas incidunt temporibus culpa, modi ullam similique expedita, voluptatem nemo nesciunt laudantium. Ab asperiores minus ad sunt quos laboriosam expedita nam dolor delectus dicta saepe ex molestiae quas, at aperiam natus alias voluptatum iure quibusdam itaque hic. Fugit quod nesciunt odit fuga dolorem voluptatem ad obcaecati asperiores voluptate, accusamus deserunt doloribus molestias itaque vitae blanditiis est officia recusandae vero? Vitae?</p>
-                            </div>
-                            <div class="profile-information tog" >
-                                <div class="profile-box">
-                                    
-                                    <h2 class="label">Username</h2> 
-                                    <input type="text" class="input" placeholder="Username">
-                                    <h2 class="label name">Name</h2>
-                                    <input type="text" class="input" placeholder="Name"></div>
-                                    <h2 class="label gender">Gender</h2> 
-                                    <input type="text" class="input" placeholder="Gender">
-                                    <h2 class="label bio">Bio</h2> 
-                                    <textarea class="input" placeholder="Bio"></textarea>    
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div> -->
-                <div class="flex flex-col md:flex-row bg-background p-6 rounded-lg shadow-lg">
+            <div class="flex flex-col md:flex-row bg-background p-6 rounded-lg shadow-lg">
                     <div class="flex-shrink-0 mb-6 md:mb-0 md:mr-6">
-                        <img id="profileImage" src="https://openui.fly.dev/openui/100x100.svg?text=👤" alt="Profile Image"
+                        <img id="profileImage" src="<%=user.image%>" alt="Profile Image"
                             class="w-24 h-24 rounded-full border-4 border-primary shadow-lg" />
                         <button id="editBtn"
                             class="bg-accent text-accent-foreground hover:bg-accent/80 mt-2 p-2 rounded-full shadow-md transition duration-200">
@@ -444,20 +451,20 @@
                         </button>
                     </div>
                     <div class="flex-grow max-w-72">
-                        <h1 id="profileName" class="text-3xl font-bold text-foreground">GERSHWIN BOKORDEDZI</h1>
-                        <p id="profileLocation" class="text-muted-foreground text-lg">Accra, Ghana</p>
-                        <p id="profilePhone" class="text-muted-foreground mt-2 mobile-number"><i class="fa fa-phone"></i> 0505702355</p>
-                        <p id="profileEmail" class="text-muted-foreground user-mail"><i class="fa fa-envelope"></i> yhung@gmail.com</p>
+                        <h1 id="profileName" class="text-3xl font-bold text-foreground"><%=user.name%></h1>
+                        <h4 id="profileName" class="text-muted-foreground font-italic username"><%=user.username%></h1>
+                        <p id="profileLocation" class="text-muted-foreground text-lg"><%=user.location%></p>
+                        <p id="profilePhone" class="text-muted-foreground mt-2 mobile-number"><i class="fa fa-phone"></i> <%=user.contact%></p>
+                        <p id="profileEmail" class="text-muted-foreground user-mail"><i class="fa fa-envelope"></i> <%=user.email%></p>
                         <h2 class="mt-4 text-xl font-semibold text-primary">Bio</h2>
-                        <p id="profileBio" class="text-muted-foreground">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                            Recusandae, nemo? A officia nam dolore nihi... <a href="#" class="text-primary hover:underline">see
+                        <p id="profileBio" class="text-muted-foreground"><%=user.bio%> <a href="#" class="text-primary hover:underline">see
                                 more</a></p>
-                        <div class="mt-4 flex space-x-4">
+                        <!-- <div class="mt-4 flex space-x-4">
                             <button
                                 class="bg-accent text-accent-foreground hover:bg-accent/80 p-2 rounded-lg shadow-md transition duration-200 chat-button">Message</button>
                             <button
                                 class="bg-secondary text-secondary-foreground hover:bg-secondary/80 p-2 rounded-lg shadow-md transition duration-200 create-button">Follow</button>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="md:w-1/2 md:ml-6 mt-6 md:mt-0">
                         <div class="mt-4">
@@ -476,10 +483,10 @@
                             </div>
                             <div id="infoContent" class="hidden bg-card p-4 rounded-b-lg shadow-md mt-0.5">
                                 <h2 class="text-lg font-semibold text-primary">Personal Info</h2>
-                                <p class="text-muted-foreground">📞 0505702355</p>
-                                <p class="text-muted-foreground">✉️ yhung@gmail.com</p>
-                                <p class="text-muted-foreground">Location: Accra, Ghana</p>
-                                <p class="text-muted-foreground">Bio: Lorem ipsum dolor sit amet consectetur adipisicing elit...</p>
+                                <p class="text-muted-foreground">📞 <%=user.contact%></user.contact></p>
+                                <p class="text-muted-foreground">✉️ <%=user.email%></p>
+                                <p class="text-muted-foreground">Location: <%=user.location%></p>
+                                <p class="text-muted-foreground">Bio: <%=user.bio%></p>
                             </div>
                         </div>
                     </div>
@@ -487,39 +494,42 @@
                 
                 <!-- Modal -->
                 <div id="editModal" class="fixed inset-0 hidden bg-gray-500 bg-opacity-75 flex items-center justify-center">
-                    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+                    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md h-full max-h-[90vh] overflow-y-auto">
                         <h2 class="text-xl font-semibold text-primary mb-4">Edit Personal Info</h2>
-                        <form id="editForm">
+                        <form id="editForm" enctype="multipart/form-data">
                             <div class="mb-4">
                                 <label class="block text-sm font-medium text-gray-700">Profile Photo</label>
-                                <input type="file" id="imageInput" class="mt-1 block w-full" />
-                                <img id="modalImagePreview" src="https://openui.fly.dev/openui/100x100.svg?text=👤"
-                                    alt="Profile Image Preview" class="w-24 h-24 mt-4 rounded-full border-4 border-primary shadow-lg" />
+                                <input type="file" id="imageInput" accept="image/*" class="mt-1 block w-full" />
                             </div>
                             <div class="mb-4">
                                 <label class="block text-sm font-medium text-gray-700">Name</label>
-                                <input type="text" id="nameInput" value="GERSHWIN BOKORDEDZI"
+                                <input type="text" id="nameInput" value="<%=user.name%>"
+                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" />
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-sm font-medium text-gray-700">Username</label>
+                                <input type="text" id="usernameInput" value="<%=user.username%>"
                                     class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" />
                             </div>
                             <div class="mb-4">
                                 <label class="block text-sm font-medium text-gray-700">Location</label>
-                                <input type="text" id="locationInput" value="Accra, Ghana"
+                                <input type="text" id="locationInput" value="<%=user.location%>"
                                     class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" />
                             </div>
                             <div class="mb-4">
-                                <label class="block text-sm font-medium text-gray-700">Phone</label>
-                                <input type="text" id="phoneInput" value="0505702355"
+                                <label class="block text-sm font-medium text-gray-700">Contact</label>
+                                <input type="text" id="contactInput" value="<%=user.contact%>"
                                     class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" />
                             </div>
                             <div class="mb-4">
                                 <label class="block text-sm font-medium text-gray-700">Email</label>
-                                <input type="email" id="emailInput" value="yhung@gmail.com"
+                                <input type="email" id="emailInput" value="<%=user.email%>"
                                     class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" />
                             </div>
                             <div class="mb-4">
                                 <label class="block text-sm font-medium text-gray-700">Bio</label>
                                 <textarea id="bioInput"
-                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit...</textarea>
+                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm"><%=user.bio%></textarea>
                             </div>
                             <div class="flex justify-end space-x-2">
                                 <button type="button" id="cancelBtn"
@@ -530,95 +540,139 @@
                         </form>
                     </div>
                 </div>
+                
+
             </div>
         </div>
         </div>
      </section>
 
     <section id="settings-section" class="all-section">
-        <div class="settings merge">
-         <div class="container">
-             <div class="leftbox">
-                 <nav>
-                     <a onclick="tabs(0)" class="tab active">
-                         <i class="fa fa-user"></i>
-                     </a>
-                     <a onclick="tabs(1)" class="tab">
-                         <i class="fa fa-shield"></i>
-                     </a>
-                     <a onclick="tabs(2)" class="tab">
-                         <i class="fa fa-bars"></i>
-                     </a>
-                     <a onclick="tabs(3)" class="tab">
-                         <i class="fa fa-users"></i>
-                     </a>
-                 </nav>
-             </div>
-             <div class="rightbox">
-                 <div class="account tabShow">
-                     <h1>Account Settings</h1>
-                     <h2>Password</h2>
-                     <p>Change Password <a href="change.html"><button class="button">Change</button></a></p>
-                     <h2>Email</h2>
-                     <p>Manage Email <a href="email.html"><button class="button">Update</button></a></p>
-                     <h2>Contact</h2>
-                     <p>Update Contact <a href="contact.html"><button class="button">Update</button></a></p>
-                     <h2>Account</h2>
-                     <p>Delete Account <a href="delete.html"><button class="button">Delete</button></a></p>
-                 </div>
-                 <div class="privacy tabShow">
-                     <h1>Privacy Info</h1>
-                     <h1>Recipes</h1>
-                     <h2>Public</h2>
-                     <p style="display: flex; align-items: center;">All users (including those who aren’t logged in) can view the user's recipes.
-                         <input type="radio" class="radio" value="" style="margin-left: 20px;">
+    <div class="settings merge">
+        <div class="container">
+            <div class="leftbox">
+                <nav>
+                    <a onclick="tabs(0)" class="tab active">
+                        <i class="fa fa-user"></i>
+                    </a>
+                    <a onclick="tabs(1)" class="tab">
+                        <i class="fa fa-shield"></i>
+                    </a>
+                    <a onclick="tabs(2)" class="tab">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                    <a onclick="tabs(3)" class="tab">
+                        <i class="fa fa-users"></i>
+                    </a>
+                </nav>
+            </div>
+            <div class="rightbox">
+            <div class="account tabShow">
+                <h1>Account Settings</h1>
+                <h2>Password</h2>
+                <p>Change your account password.</p>
+                <h2>Email</h2>
+                <p><%=user.email %></p>
+                <h2>Contact</h2>
+                <p><%=user.contact %></p>
+        
+                
+            
+                <!-- Button to open the modal -->
+                <button class="editAccountButton" onclick="openModal()">Edit Account Information</button>
+            </div>
+
+            <div id="editAccountModal" class="fixed inset-0 hidden bg-gray-500 bg-opacity-75 flex items-center justify-center">
+                <div class="bg-white p-6 rounded-lg shadow-lg w-full h-full max-w-md">
+                    <h2 class="text-xl font-semibold text-primary mb-4">Edit Account Information</h2>
+                    <form id="editAccountForm" onsubmit="updateSettings(event)" enctype="multipart/form-data">
+                        <!-- Form fields for editing account information -->
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700">Enter Previous Password</label>
+                            <input type="password" name="password" id="oldPass" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" />
+                            <label class="block text-sm font-medium text-gray-700">Enter New Password</label>
+                            <input type="password" name="password" id="newPass" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" />
+                            <label class="block text-sm font-medium text-gray-700">Confirm New Password</label>
+                            <input type="password" name="password" id="cPass" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" />
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700">Email</label>
+                            <input type="email" name="email" id="setMail" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" />
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700">Contact</label>
+                            <input type="text" name="contact" id="setPhone" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" />
+                        </div>
+                        <div class="flex justify-end space-x-2">
+                            <button type="button" onclick="closeModal()"
+                                class="bg-gray-300 text-gray-700 hover:bg-gray-400 px-4 py-2 rounded-lg">Cancel</button>
+                            <button type="submit"
+                                class="bg-primary text-primary-foreground hover:bg-primary/80 px-4 py-2 rounded-lg">Save</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+                <div class="privacy tabShow">
+                    <h1>Privacy Info</h1>
+                    <h1>Recipes</h1>
+                    <h2>Public</h2>
+                    <p style="display: flex; align-items: center;">All users (including those who aren’t logged in) can view
+                        the user's recipes.
+                        <input type="radio" class="radio" value="" style="margin-left: 20px;">
                     </p>
                     <h2>Private</h2>
-                    <p style="display: flex; align-items: center;"> Only users who are connected to the person (e.g., friends or followers) can see their recipes.  
+                    <p style="display: flex; align-items: center;"> Only users who are connected to the person (e.g.,
+                        friends or followers) can see their recipes.
                         <input type="radio" class="radio" value="" style="margin-left: 20px;">
-                   </p>
-                   <h1>Profile</h1>
-                   <h2>Public</h2>
-                   <p style="display: flex; align-items: center;">Anyone can view the user's profile, including their bio, profile picture, and any other public information.
-                       <input type="radio" class="radio" value="" style="margin-left: 20px;">
-                  </p>
-                  <h2>Private</h2>
-                  <p style="display: flex; align-items: center;"> Only users who are connected to the person (e.g., friends or followers) can view profile.  
-                      <input type="radio" class="radio" value="" style="margin-left: 20px;">
-                 </p>
-                 </div>
-                 <div class="preference tabShow">
-                     <h1>App Preference</h1>
-                     <button class="btn">Update</button>
-                 </div>
-                 <div class="about tabShow">
-                     <h1>About Us</h1>
-                     <p>Welcome to Recipe Hub – your ultimate destination for culinary creativity
-                         , inspiration, and community!<br>
-                         At Recipe Hub, we believe that cooking is more than just preparing meals;
-                          it's a way to connect, explore cultures, and create memorable experiences.<br>
-                          <br>
-                           Founded on the passion for sharing delicious recipes and fostering a love for food,
-                            our mission is to bring together home cooks, food enthusiasts, 
-                            and professional chefs from around the world.,<br> 
-                            <br>
-                            Our Vision:
-                            We envision a world where everyone has access to delicious,
-                             nutritious, and easy-to-make recipes that bring joy to their tables.
-                              By fostering a supportive and inclusive environment,
-                               Recipe Hub aims to inspire creativity in the kitchen
-                                and make cooking a delightful part of everyday life.<br>
-                                <br>
-                            Join Us:
-                            Whether you're a seasoned chef, a budding home cook, or someone who simply loves good food,
-                             Recipe Hub welcomes you. Dive into our collection, share your culinary creations,
-                              and be part of a community that celebrates the art of cooking together.<br>
-                              <br>
-                            Thank you for being a part of Recipe Hub. 
-                            Let's cook, share, and savor the wonderful journey of food together!</p>
-                 </div>
-             </div>
-         </div> 
+                    </p>
+                    <h1>Profile</h1>
+                    <h2>Public</h2>
+                    <p style="display: flex; align-items: center;">Anyone can view the user's profile, including their bio,
+                        profile picture, and any other public information.
+                        <input type="radio" class="radio" value="" style="margin-left: 20px;">
+                    </p>
+                    <h2>Private</h2>
+                    <p style="display: flex; align-items: center;"> Only users who are connected to the person (e.g.,
+                        friends or followers) can view profile.
+                        <input type="radio" class="radio" value="" style="margin-left: 20px;">
+                    </p>
+                </div>
+                <div class="preference tabShow">
+                    <h1>App Preference</h1>
+                    <button class="btn">Update</button>
+                </div>
+                <div class="about tabShow">
+                    <h1>About Us</h1>
+                    <p>Welcome to Recipe Hub – your ultimate destination for culinary creativity
+                        , inspiration, and community!<br>
+                        At Recipe Hub, we believe that cooking is more than just preparing meals;
+                        it's a way to connect, explore cultures, and create memorable experiences.<br>
+                        <br>
+                        Founded on the passion for sharing delicious recipes and fostering a love for food,
+                        our mission is to bring together home cooks, food enthusiasts,
+                        and professional chefs from around the world.,<br>
+                        <br>
+                        Our Vision:
+                        We envision a world where everyone has access to delicious,
+                        nutritious, and easy-to-make recipes that bring joy to their tables.
+                        By fostering a supportive and inclusive environment,
+                        Recipe Hub aims to inspire creativity in the kitchen
+                        and make cooking a delightful part of everyday life.<br>
+                        <br>
+                        Join Us:
+                        Whether you're a seasoned chef, a budding home cook, or someone who simply loves good food,
+                        Recipe Hub welcomes you. Dive into our collection, share your culinary creations,
+                        and be part of a community that celebrates the art of cooking together.<br>
+                        <br>
+                        Thank you for being a part of Recipe Hub.
+                        Let's cook, share, and savor the wonderful journey of food together!
+                    </p>
+                </div>
+    
+            </div>
+        </div>
+
           </section>
      
 
@@ -628,6 +682,14 @@
     </section>
 
     <script>
+        function openModal() {
+                document.getElementById('editAccountModal').classList.remove('hidden');
+            }
+
+            function closeModal() {
+                document.getElementById('editAccountModal').classList.add('hidden');
+            }
+
         function Tabs(tabIndex) {
             const sections = document.querySelectorAll('.all-section');
             sections.forEach((section, index) => {
@@ -638,19 +700,77 @@
                 }
             });
         }
+                // Set the default tab to display
 
+               
         document.addEventListener('DOMContentLoaded', () => {
-            // Set the default tab to display
-            Tabs(0);
+            const sections = document.querySelectorAll('.all-section');
+            // Ensure the modal is visible by removing any 'hidden' class
+            const newLoginModal = document.getElementById('newLoginModal');
+            if(newLoginModal){
+                if(!newLoginModal.classList.contains('hidden')) {
+                sections.forEach((section) => {
+                section.style.display = 'none';
+                });
+             }
+            }else{
+                Tabs(0)
+            }
+          
+          
         });
     </script>
     <script type="text/javascript">
+          // Function to close the new login modal
+    function closeLoginModal() {
+        document.getElementById('editModal').classList.add('hidden');
+    }
+    function updateSettings(event) {
+        event.preventDefault(); // Prevent the default form submission  
+        // Collect form data into an object
+        const settingsData = {
+            new_pass: document.getElementById("newPass").value.trim(),
+            email: document.getElementById("setMail").value.trim(),
+            contact: document.getElementById("setPhone").value.trim(),
+            old_pass: document.getElementById("oldPass").value.trim(),
+            c_pass: document.getElementById("cPass").value.trim()
+        };
+        if(settingsData.new_pass !== settingsData.c_pass){
+            alert("Passwords do not match");
+            return;
+        }else{
+            try {
+            fetch("/u/update", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(settingsData)
+            }).then(response => response.json()).then(data => {
+                if (data.success) {
+                    alert("Settings updated successfully!");
+                    closeModal(); // Hide the modal
+                } else {
+                    alert("An error occurred. Please try again.");
+                    console.error("Error updating settings:", data.message);
+                }
+            }).catch(error => {
+                console.error("Fetch error:", error);
+                alert("An unexpected error occurred. Please try again.");
+            });
+        } catch (error) {
+            console.log(error)
+            alert(error)
+        }
+        }
+
+    }
         // Tab switching functionality
         document.getElementById('recipeTab').addEventListener('click', function () {
             document.getElementById('recipeContent').classList.remove('hidden');
             document.getElementById('infoContent').classList.add('hidden');
         });
-
+       
         document.getElementById('infoTab').addEventListener('click', function () {
             document.getElementById('infoContent').classList.remove('hidden');
             document.getElementById('recipeContent').classList.add('hidden');
@@ -665,41 +785,106 @@
             document.getElementById('editModal').classList.add('hidden');
         });
 
-        // Image preview functionality
-        document.getElementById('imageInput').addEventListener('change', function (event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function (e) {
-                    document.getElementById('modalImagePreview').src = e.target.result;
-                };
-                reader.readAsDataURL(file);
+      
+  // Save button functionality
+  document.getElementById('editForm').addEventListener('submit', function (event) {
+    event.preventDefault(); // Prevent traditional form submission
+
+    const formData = new FormData();
+    const imageFile = document.getElementById("imageInput").files[0];
+
+    if (imageFile) {
+        formData.append('file', imageFile); // Append the image file
+    }
+
+    // Append other form data
+    formData.append('name', document.getElementById("nameInput").value);
+    formData.append('username', document.getElementById("usernameInput").value);
+    formData.append('location', document.getElementById("locationInput").value);
+    formData.append('contact', document.getElementById("contactInput").value);
+    formData.append('email', document.getElementById("emailInput").value);
+    formData.append('bio', document.getElementById("bioInput").value);
+
+    console.log([...formData.entries()]); // Log the form data for debugging
+
+    // Submit form data using fetch
+    fetch("/u/update", {
+        method: "POST",
+        body: formData // FormData is automatically set to 'multipart/form-data'
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert("Profile updated successfully!");
+            closeLoginModal(); // Hide the modal
+        } else {
+            alert("An error occurred. Please try again.");
+        }
+    })
+    .catch(error => console.error('Error:', error));
+});
+
+  
+  
+
+
+
+    function closeNewLoginModal() {
+        document.getElementById('newLoginModal').classList.add('hidden');
+    }
+
+    // Function to handle new user login form submission
+    function newLogin(event) {
+        event.preventDefault(); // Prevent the default form submission
+        document.getElementById('newSaveBtn').disabled = true; // Disable the submit button
+        // Collect form data into an object
+        const userData = {
+            name: document.getElementById("newNameInput").value.trim(),
+            username: document.getElementById("newUsernameInput").value.trim(),
+            location: document.getElementById("newLocationInput").value.trim(),
+            contact: document.getElementById("newContactInput").value.trim(),
+            email: document.getElementById("newEmailInput").value.trim(),
+            bio: document.getElementById("newBioInput").value.trim()
+            // Note: Handling file uploads (e.g., profile photo) requires a different approach
+        };
+
+        // Optional: Validate the data before sending
+        if (!userData.name || !userData.username || !userData.email) {
+            alert("Please fill in all required fields.");
+            return;
+        }
+
+        // Log the data for debugging
+        console.log("Submitting new user data:", userData);
+
+        // Submit the form data using fetch as JSON
+        fetch("/u/update", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userData)
+        })
+        .then(response => response.json())
+        .then(data => {
+           
+            if (data.success) {
+                alert("Profile updated successfully!");
+                closeNewLoginModal(); // Hide the modal
+                
+                // Reload the page to reflect the changes
+                 location.reload();
+            } else {
+                alert("An error occurred. Please try again.");
+                console.error("Error updating profile:", data.message);
             }
+        })
+        .catch(error => {
+            console.error("Fetch error:", error);
+            alert("An unexpected error occurred. Please try again.");
         });
-
-        // Save button functionality
-        document.getElementById('editForm').addEventListener('submit', function (event) {
-            event.preventDefault(); // Prevent the form from submitting in the traditional way
-
-            // Get values from the form inputs
-            const name = document.getElementById('nameInput').value;
-            const location = document.getElementById('locationInput').value;
-            const phone = document.getElementById('phoneInput').value;
-            const email = document.getElementById('emailInput').value;
-            const bio = document.getElementById('bioInput').value;
-            const imageSrc = document.getElementById('modalImagePreview').src;
-
-            // Update the profile information on the main page
-            document.getElementById('profileName').textContent = name;
-            document.getElementById('profileLocation').textContent = location;
-            document.getElementById('profilePhone').textContent = `📞 ${phone}`;
-            document.getElementById('profileEmail').textContent = `✉️ ${email}`;
-            document.getElementById('profileBio').textContent = bio;
-            document.getElementById('profileImage').src = imageSrc;
-
-            // Close the modal
-            document.getElementById('editModal').classList.add('hidden');
-        });
+    }
+ 
     </script>
     
 </body>

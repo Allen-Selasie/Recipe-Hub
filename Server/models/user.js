@@ -1,10 +1,18 @@
 const mongoose = require("mongoose");
-const {hashPassword} = require('../utilities/encryption');
+const { hashPassword } = require('../utilities/encryption');
 
 const userSchema = new mongoose.Schema({
     username: {
         type: String,
         required: true,
+    },
+    name: {
+        type: String,
+        default: "",
+    },
+    location: {
+        type: String,
+        default: "",
     },
     email: {
         type: String,
@@ -13,7 +21,27 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: true,
-    }
+    },
+    bio: {
+        type: String,
+        default: "",
+    },
+    image: {
+        type: String,
+        default: "https://iili.io/dKSXTua.md.png",
+    },
+    contact: {
+        type: String,
+        default: "",
+    },
+    loginCount: {
+        type: Number,
+        default: 0,
+    },
+    newLogin: {
+        type: Boolean,
+        default: true,
+    },
 }, {
     timestamps: true
 });
@@ -28,5 +56,6 @@ userSchema.pre('save', async function (next) {
         next(error);
     }
 });
+
 const User = mongoose.model("User", userSchema);
 module.exports = User;

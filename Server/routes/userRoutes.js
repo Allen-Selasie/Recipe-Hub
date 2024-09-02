@@ -1,9 +1,15 @@
 const express = require("express");
 const User = require("../models/user");
 const UserRoutes = express.Router();
-const { verifyPassword } = require("../utilities/encryption");
+const { verifyPassword, hashPassword } = require("../utilities/encryption");
 const requireLogin = require("../Middleware/authMiddleware");
 const sendMail = require('../utilities/mail');
+const Category = require("../models/category");
+const multer = require("multer");
+const Recipe = require("../models/recipe");
+const uploadImage = require("../Controllers/ImageUpload");
+
+const upload = multer({storage: multer.memoryStorage()});
 
 
 UserRoutes.post("/create", async (req, res) => {
@@ -16,6 +22,8 @@ UserRoutes.post("/create", async (req, res) => {
   if (password !== confirm) {
     res.send("Incorrect password!");
   }
+
+
      // Find the user with the provided email
      const current_user = await User.findOne({ email: email });
 
@@ -24,6 +32,7 @@ UserRoutes.post("/create", async (req, res) => {
        return res.redirect("/home")
      }
   try {
+
     const Candidate = new User({
       username,
       email,
@@ -83,6 +92,9 @@ UserRoutes.post("/login", async (req, res) => {
     // Mark the session as authenticated
     req.session.authenticated = true;
     req.session.user = current_user;
+    // Increment loginCount
+    current_user.loginCount += 1;
+    await current_user.save();
     res.redirect("/home");
   } catch (error) {
     console.error(error);
@@ -91,10 +103,10 @@ UserRoutes.post("/login", async (req, res) => {
 });
 
 
-UserRoutes.post("/update", requireLogin, async (req, res) => {
-    const { name, username, email, old_pass, new_pass, c_pass } = req.body;
+UserRoutes.post("/update",  upload.single('file'),requireLogin, async (req, res) => {
+    const { name, username, email, old_pass, new_pass, c_pass,bio,contact,location } = req.body;
     
-  
+  //console.log(await req.body);
     try {
       const current_user = req.session.user;
       const updates = {};
@@ -117,6 +129,10 @@ UserRoutes.post("/update", requireLogin, async (req, res) => {
       if (name) updates.name = name;
       if (username) updates.username = username;
       if (email) updates.email = email;
+      if (bio) updates.bio = bio;
+      if(req.file) updates.image = await uploadImage(req.file);
+      if (contact) updates.contact = contact;
+      if (location) updates.location = location;
   
       // Update the user document in the database if there are updates
       if (Object.keys(updates).length > 0) {
@@ -125,12 +141,16 @@ UserRoutes.post("/update", requireLogin, async (req, res) => {
   
       // Fetch the updated user document
       const updatedUser = await User.findOne({ _id: current_user._id });
-  
+      //console.log(updates);
+      
       // Update the session user with the updated details
       req.session.user = updatedUser;
    // Update successful response
-   res.status(200).json({ message: "Update successful!" });
-  
+   res.status(200).json({ message: "Update successful!", success: true });
+  //switch to not new login
+  updatedUser.newLogin = false;
+  updatedUser.save();
+
     } catch (error) {
       console.error(error);
       res.status(500).send({ message: "Internal Server Error" });
@@ -255,9 +275,41 @@ UserRoutes.get("/reset/:token", async (req, res) => {
 });
 
 
-UserRoutes.get("/my-recipes", requireLogin, (req, res) => {
+UserRoutes.get("/my-recipes", requireLogin, async (req, res) => {
     const user = req.session.user;
-    res.render("recipe", { user });
+    const categories = await Category.find();
+    res.render("recipe", { user, categories });
 });
 
+
+UserRoutes.post('/add-recipe', requireLogin, async (req, res) => {
+    const { title,description, ingredients, instructions,category,time,difficulty } = req.body;  
+    const user = req.session.user;
+
+    if (!req.file) {
+      return res.status(400).json({ message: 'No file uploaded' });
+    }
+    try {
+      
+        const imageUrl = await uploadImage(req.file);
+        const newRecipe = new Recipe({
+            title,
+            description,
+            ingredients,
+            instructions,
+            category,
+            time,
+            difficulty,
+            image: imageUrl,
+        });
+        await newRecipe.save();
+        res.status(201).json({ message: 'Recipe added successfully' });
+    }catch (error) {
+        console.error(error);
+        res.status(500).send("Internal Server Error");
+    }
+  
+  
+  
+  });
 module.exports = UserRoutes;

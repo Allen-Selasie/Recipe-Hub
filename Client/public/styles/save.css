@@ -82,7 +82,7 @@ body.dark{
     height: 93%;
     width: 250px;
     padding: 10px 14px;
-    margin-top: 20px;
+    margin: 20px;
     background: var(--sidebar-color);
     transition: var(--tran-05);
     z-index: 100;
@@ -301,6 +301,14 @@ body.dark .switch::before{
     transition: var(--tran-05);
      
 }
+#newLoginModal{
+    position: relative;
+    left: 250px;
+    height: 100vh;
+    width: calc(100% - 250px);
+    background: var(--body-color);
+    transition: var(--tran-05);
+}
 
 /*
 .all-section .text{
@@ -316,19 +324,17 @@ body.dark .switch::before{
 }
 
 
-/* Settings */
-.settings{
-    display: flex;
-    justify-content: center;
-}
 
+/* Settings */
 .container{
   background: white;
-  width: 900px;
+  width: 790px;
   height: 570px;
+  margin: 0 auto;
   position: relative;
   border-radius: 5px;
   margin-top: 4%;
+  margin-left: 50px;
   box-shadow: 2px 5px 20px rgba(119,119,119,.5);
   }
   
@@ -346,15 +352,11 @@ body.dark .switch::before{
   }
 
   .leftbox nav a{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
     list-style: none;
-    padding: 45px 20px;
+    padding: 45px;
     color: #fff;
     font-size: 1.1em;
-    /* display: block; */
+    display: block;
     transition: all .3s ease-in-out;
   }
 
@@ -387,7 +389,7 @@ body.dark .switch::before{
   .rightbox h1{
     font-family: "Montserrat", sans-serif;
     color: #7ed386;
-    font-size: 1.2rem;
+    font-size: 2rem;
     margin-top: 30px;
     margin-bottom: 25px;
   }
@@ -396,7 +398,7 @@ body.dark .switch::before{
     color: #777;
   font-family: "Roboto",sans-serif;
   text-transform: uppercase;
-  font-size: 8px;
+  font-size: 15px;
   letter-spacing: 1px;
   margin-left: 2px;
   margin-top: 7px;
@@ -452,6 +454,12 @@ body.dark .switch::before{
   .button:hover{
     text-decoration: underline;
     font-weight: 600;
+}
+.editAccountButton{
+    margin-top:20px;
+    background: #3fb6a8;
+    padding: 10px 20px;
+    border-radius: 3px;
 }
 
 
@@ -677,6 +685,7 @@ body.dark .switch::before{
 }
 
 /* Profile Section*/
+
 #profile-section{
     /*padding-top: ;*/
     font-family: "poppins", sans-serif;

@@ -8,6 +8,7 @@ const Card = require('./models/cards');
 const requireLogin = require('./Middleware/authMiddleware');
 require('dotenv').config();
 const MongoStore = require('connect-mongo');
+const Category = require('./models/category');
 
 const mongouri = process.env.mongouri;
 const port = process.env.PORT || 3000;
@@ -42,7 +43,7 @@ app.use(
       dbName:"recipe_hub"
     }),
     cookie: {
-      maxAge: 1000 * 60 * 60 * 1, // 1 day
+      maxAge: 1000 * 60 * 60 * 1, // 1 hour
     },
   })
 );
@@ -53,9 +54,17 @@ app.get("/",async (req,res)=>{
   res.render("index",{recipies});
 })
 
-app.get("/home",requireLogin,async(req,res)=>{
+app.get("/home",requireLogin, async(req,res)=>{
   const user = req.session.user;
-  res.render("home",{username:user.username})
+  try {
+   
+  const categories = await Category.find();
+  res.render("home",{user, categories});
+
+  } catch (error) {
+    console.log(error);
+    res.redirect("/u/login");
+  }
 })
 
 
