@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Recipe Management | Recipe Hub</title>
+    <link rel="stylesheet" href="/styles/recipe.css" />
+    <link rel="stylesheet" href="/styles/loader.css" />
+  </head>
+  <body>
+    <!-- loader -->
+    <div id="loading-modal" class="loading-modal">
+      <div class="loader"></div>
+    </div>
+    <header>
+      <h1>Recipe Management</h1>
+      <nav>
+        <a href="/">Home</a>
+        <a href="/home">Profile</a>
+        <a href="/u/logout">Logout</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="recipe-form">
+        <h2>Upload New Recipe</h2>
+        <form id="recipeForm" enctype="multipart/form-data">
+            <div id="field">
+               <label for="title">Recipe Title:</label>
+               <input type="text" id="title" name="title" required />
+            </div>
+        
+            <div id="field">
+               <label for="description">Description:</label>
+               <input type="text" id="description" name="description" required />
+            </div>
+
+            <div id="field">
+                <label for="title">Category:</label>
+                <select name="Categories" id="categories">
+                  <% categories.forEach(category => { %>
+                 <option value="<%= category._id %>"><%= category.name %></option>
+                  <% }) %>
+                </select>
+            </div>
+            
+            <div id="field">
+              <label for="ingredients">Ingredients:</label>
+              <textarea id="ingredients" name="ingredients" required></textarea>
+            </div>
+          
+            <div id="field">
+              <label for="instructions">Cooking Instructions:</label>
+              <textarea id="instructions" name="instructions" required></textarea>
+            </div>
+          
+            <div id="field">
+              <label for="prepHours">Preparation Time:</label>
+              <div class="prepTime">
+                <input
+                  type="number"
+                  id="prepHours"
+                  name="prepHours"
+                  min="0"
+                  placeholder="Hours"
+                  required
+                />
+              
+                <input
+                  type="number"
+                  id="prepMinutes"
+                  name="prepMinutes"
+                  min="0"
+                  max="59"
+                  placeholder="Minutes"
+                  required
+                />
+              </div>
+            </div>
+
+            <div id="field">
+              <label for="difficulty">Difficulty Level:</label>
+              <select id="difficulty" name="difficulty" required>
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+              </select>
+            </div>
+          
+           <div id="field">
+            <label for="tags">Dietary Tags:</label>
+            <input type="text" id="tags" name="tags"/>
+           </div>
+          
+          <div id="field">
+            <label for="media">Upload Photos:</label>
+            <input type="file" id="media"  accept="image/*" name="media" multiple />
+          </div>
+          <button type="submit" id="recipeUp">Upload</button>
+        </form>
+      </section>
+
+      
+    </main>
+
+    <!-- <template id="recipeTemplate">
+      <li class="recipe-item">
+        <h3 class="recipe-title"></h3>
+        <p>
+          <strong>Ingredients:</strong> <span class="recipe-ingredients"></span>
+        </p>
+        <p>
+          <strong>Instructions:</strong>
+          <span class="recipe-instructions"></span>
+        </p>
+        <p><strong>Prep Time:</strong> <span class="recipe-prepTime"></span></p>
+        <p>
+          <strong>Difficulty:</strong> <span class="recipe-difficulty"></span>
+        </p>
+        <p><strong>Tags:</strong> <span class="recipe-tags"></span></p>
+        <div class="recipe-media"></div>
+        <button class="edit-recipe">Edit</button>
+        <button class="delete-recipe">Delete</button>
+        <div class="rating-review">
+          <label for="rating">Rate this recipe:</label>
+          <select class="rating" name="rating">
+            <option value="1">1 Star</option>
+            <option value="2">2 Stars</option>
+            <option value="3">3 Stars</option>
+            <option value="4">4 Stars</option>
+            <option value="5">5 Stars</option>
+          </select>
+          <label for="review">Leave a Review:</label>
+          <textarea class="review" name="review"></textarea>
+          <button class="submit-review">Submit Review</button>
+        </div>
+        <ul class="reviews-list">
+         
+        </ul>
+      </li>
+    </template> -->
+
+    <script src="/scripts/recipe.js"></script>
+    <script src="/scripts/loader.js"></script>
+  </body>
+</html>

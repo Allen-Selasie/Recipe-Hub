@@ -1,120 +1,1006 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE-edge"> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recipe Sharing Platform</title>
-    <link rel="stylesheet" href="/styles/sidebar.css">
-        <link rel="stylesheet" href="styles/loader.css">
+    <link rel="stylesheet" href="/styles/save.css"> 
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- newly added code -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script src="https://unpkg.com/unlazy@0.11.3/dist/unlazy.with-hashing.iife.js" defer init></script>
+    <script type="text/javascript">
+        window.tailwind.config = {
+            darkMode: ['class'],
+            theme: {
+                extend: {
+                    colors: {
+                        border: 'hsl(var(--border))',
+                        input: 'hsl(var(--input))',
+                        ring: 'hsl(var(--ring))',
+                        background: 'hsl(var(--background))',
+                        foreground: 'hsl(var(--foreground))',
+                        primary: {
+                            DEFAULT: 'hsl(var(--primary))',
+                            foreground: 'hsl(var(--primary-foreground))'
+                        },
+                        secondary: {
+                            DEFAULT: 'hsl(var(--secondary))',
+                            foreground: 'hsl(var(--secondary-foreground))'
+                        },
+                        destructive: {
+                            DEFAULT: 'hsl(var(--destructive))',
+                            foreground: 'hsl(var(--destructive-foreground))'
+                        },
+                        muted: {
+                            DEFAULT: 'hsl(var(--muted))',
+                            foreground: 'hsl(var(--muted-foreground))'
+                        },
+                        accent: {
+                            DEFAULT: 'hsl(var(--accent))',
+                            foreground: 'hsl(var(--accent-foreground))'
+                        },
+                        popover: {
+                            DEFAULT: 'hsl(var(--popover))',
+                            foreground: 'hsl(var(--popover-foreground))'
+                        },
+                        card: {
+                            DEFAULT: 'hsl(var(--card))',
+                            foreground: 'hsl(var(--card-foreground))'
+                        },
+                    },
+                }
+            }
+        }
+    </script>
+    <style type="text/tailwindcss">
+        @layer base {
+    				:root {
+    					--background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 240 5.9% 10%;
+    --radius: 0.5rem;
+    				}
+    				.dark {
+    					--background: 240 10% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 240 10% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 240 10% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 240 3.7% 15.9%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 240 3.7% 15.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 240 4.9% 83.9%;
+    				}
+    			}
+    </style>
 </head>
 <body>
-    <!-- loader -->
-    <div id="loading-modal" class="loading-modal">
-        <div class="loader"></div>
-    </div>
-    <nav class ="sidebar close">
-        <header>
-            <div class="image-text">
-                <span class="image">
-                    <img src="/images/rh-high-resolution-logo-transparent.png" alt="logo">
-                </span>
+   <nav class="sidebar close">
+    <header>
+        <div class="image-text">
+            <span class="image">
+                <img src="/images/rh-high-resolution-logo-transparent.png" alt="logo">
+            </span>
+            <div class="text header-text">
+                <span class="name">RecipeHub</span>
+                <span class="slogan">Eat Well</span>
+            </div>
+        </div>
+        <i class='bx bx-chevron-right toggle'></i>
+    </header>
 
-                <div class="text header-text">
-                    <span class="name">RecipeHub</span>
-                    <span class="slogan">Eat Well</span>
+    <div class="menu-bar">
+        <div class="menu">
+            <li class="search-box">
+                <i class='bx bx-search icon'></i>
+                <input type="text" placeholder="Search...">
+            </li>
+            <ul class="menu-links">
+                <li class="nav-link">
+                    <a href="#" onclick="Tabs(0)">
+                        <i class='bx bx-home-alt icon'></i>
+                        <span class="text nav-text">Home</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="/recipe/feed"  class="tab" data-tab="discover">
+                        <i class='bx bxs-dish icon'></i>
+                        <span class="text nav-text">Discover</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="#"  onclick="Tabs(1)" class="tab" data-tab="profile">
+                        <i class='bx bx-user-circle icon'></i>
+                        <span class="text nav-text">Profile</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="#"  onclick="Tabs(2)" class="tab" data-tab="settings">
+                        <i class='bx bx-cog icon'></i>
+                        <span class="text nav-text">Settings</span>
+                    </a>
+                </li>
+                <li class="nav-link">
+                    <a href="#" onclick="Tabs(3)" class="tab" data-tab="help">
+                        <i class='bx bx-help-circle icon'></i>
+                        <span class="text nav-text">Help</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="bottom-content">
+            <li class="">
+                <a href="/u/logout">
+                    <i class='bx bx-log-out icon'></i>
+                    <span class="text nav-text">Logout</span>
+                </a>
+            </li>
+
+            <li class="mode">
+                <div class="moon-sun">
+                    <i class='bx bx-moon icon moon'></i>
+                    <i class='bx bx-sun icon sun'></i>
+                </div>
+                <span class="mode-text text">Dark Mode</span>
+
+                <div class="toggle-switch">
+                    <span class="switch"></span>
+                </div>
+            </li>
+        </div>
+    </div>
+</nav>
+<script>
+    const tabBtn = document.querySelectorAll(".tab");
+    const tab = document.querySelectorAll(".tabShow");
+
+    function tabs(panelIndex) {
+        tab.forEach(function (node) {
+            node.style.display = "none";
+        });
+        tab[panelIndex].style.display = "block"
+
+    }
+    tabs(0)
+</script>
+<script>
+    $(".tab").click(function () {
+        $(this).addClass("active").siblings()
+            .removeClass('active')
+    })
+</script>
+
+<script>
+    // Toggle Sidebar
+    const sidebar = document.querySelector('.sidebar');
+    const toggle = document.querySelector('.toggle');
+
+    toggle.addEventListener('click', () => {
+        sidebar.classList.toggle('close');
+    });
+
+   // Function to handle tab switching
+    function tabs(tabIndex) {
+        // Get all elements with the class 'tabShow'
+        var tabs = document.querySelectorAll('.tabShow');
+
+        // Loop through all tab content elements and hide them
+        tabs.forEach(function (tab, index) {
+            if (index === tabIndex) {
+                tab.style.display = 'block'; // Show the selected tab content
+            } else {
+                tab.style.display = 'none'; // Hide other tab content
+            }
+        });
+
+        // Get all tab buttons and remove the 'active' class
+        var tabButtons = document.querySelectorAll('.tab');
+        tabButtons.forEach(function (tabBtn, index) {
+            if (index === tabIndex) {
+                tabBtn.classList.add('active'); // Add the 'active' class to the clicked tab button
+            } else {
+                tabBtn.classList.remove('active'); // Remove the 'active' class from other tab buttons
+            }
+        });
+    }
+    document.addEventListener('DOMContentLoaded', function () {
+        // Initialize the tabs to show the first tab by default
+        tabs(0);
+    });
+
+    // Handle Dark Mode Toggle
+    const toggleSwitch = document.querySelector('.toggle-switch');
+    const body = document.body;
+    const modeText = document.querySelector('.mode-text');
+
+    toggleSwitch.addEventListener('click', () => {
+        body.classList.toggle('dark');
+        if (body.classList.contains('dark')) {
+            modeText.innerText = 'Light Mode';
+        } else {
+            modeText.innerText = 'Dark Mode';
+        }
+    });
+</script>
+<!-- New user login modal section -->
+<section id="popups" class="">
+    <% if(user.newLogin){ %>
+    <!-- New Login Modal -->
+    <div id="newLoginModal"  class="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center">
+        <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md h-full max-h-[90vh] overflow-y-auto">
+            <h2 class="text-xl font-semibold text-primary mb-4">Welcome to RecipeHub!</h2>
+            <form id="newLoginForm" onsubmit="newLogin(event)">
+                <p class="mb-4">Hello, <%=user.username%>, <br> Please take a moment to update your profile information.</p>
+                
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">Name</label>
+                    <input type="text" id="newNameInput" placeholder="Enter your Full Name" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" required />
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">Username</label>
+                    <input type="text" id="newUsernameInput" value="<%=user.username%>" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" required />
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">Location</label>
+                    <input type="text" id="newLocationInput" placeholder="Eg: Kumasi, Ghana" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" />
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">Contact</label>
+                    <input type="text" id="newContactInput" placeholder="Eg: +233000000000" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" />
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">Email</label>
+                    <input type="email" id="newEmailInput" value="<%=user.email%>" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" required />
+                </div>
+                
+                <div class="mb-4">
+                    <label class="block text-sm font-medium text-gray-700">Bio</label>
+                    <textarea id="newBioInput" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm">Lorem Ipsum.....</textarea>
+                </div>
+                
+                <div class="flex justify-end space-x-2">
+                    <button type="submit" id="newSaveBtn" class="bg-primary text-primary-foreground hover:bg-primary/80 px-4 py-2 rounded-lg">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <% } %>
+</section>
+
+    <section id="discover-section" class="all-section">
+            <div class="discover merge">
+        <header class="discover-head">
+            <div class="logo"> 
+            <img src="https://www.shutterstock.com/image-vector/cutlery-icon-spoon-forks-knife-600nw-1931212061.jpg" alt="Cutlery Icon" />
+                <div class="logo-text">
+                    <p><strong>Cook Smart</strong></p>
+                    <p><strong>Eat Well</strong></p>
+                </div>
+            </div>
+            <a href="/u/my-recipes">
+                <button class="create-button">Create Recipe</button>
+            </a>
+        </header>
+    
+    <section class="hero">
+    <h1>Delicious Recipes</h1>
+    <p>Explore our collection of amazing recipes from around the world!</p>
+    </section>
+    
+    <section class="category-section">
+        <% categories.forEach(category => { %>
+            <div class="category-button">
+                <img src="<%=category.image%>" alt="<%=category.name%> Icon" class="category-icon">
+                <span class="category-text"><%=category.name%></span>
+                </div>
+        <% }) %>
+   
+    </section>
+    <div class="recipe-container">
+        <% recipes.forEach(recipe => { %>
+        <div class="recipe-card" data-recipe-id="<%= recipe._id %>">
+            <div class="recipe-image-container">
+                <img src="<%= recipe.image %>" alt="<%= recipe.title %>" class="recipe-image">
+                <a href="/recipe/<%= recipe._id %>"> 
+                    <button class="view-more">View</button>
+                </a>
+            </div>
+            
+            <div class="recipe-icons">
+                <div class="left-icons">
+                    <div class="icon-with-count">
+                        <span id="comment-count-<%= recipe._id %>" class="count"><%= recipe.comments %></span>
+                        <i class="material-icons" onclick="showCommentsModal('<%= recipe._id %>')">comment</i>
+                    </div>
+                    <div class="icon-with-count">
+                        <span id="like-count-<%= recipe._id %>" class="count"><%= recipe.likes %></span>
+                        <i class="material-icons" onclick="updateEngagement('<%= recipe._id %>', 'like')">favorite_border</i>
+                    </div>
+                    <div class="icon-with-count">
+                        <span id="share-count-<%= recipe._id %>" class="count"><%= recipe.shares %></span>
+                        <i class="material-icons" onclick="updateEngagement('<%= recipe._id %>', 'share')">share</i>
+                    </div>
+                </div>
+                <div class="icon-with-count">
+                    <span id="save-count-<%= recipe._id %>" class="count"><%= recipe.saves %></span>
+                    <i class="material-icons save" onclick="updateEngagement('<%= recipe._id %>', 'save')">bookmark_border</i>
+                </div>
+            </div>
+            
+            <div class="recipe-info">
+                <h3><%= recipe.title %></h3>
+                <div class="recipe-details">
+                    <i class="material-icons">schedule</i>
+                    <p><%= recipe.time %></p>
+                    <i class="material-icons cooking-icon">restaurant_menu</i>
+                    <p class="difficulty"><%= recipe.difficulty %></p><br>
+                </div>
+                <div class="author">
+                    <i class="material-icons">person</i>
+                    <span class="author-username"><%= recipe.author %></span>
+                </div>
+                <div class="rating">
+                    <% for (let i = 0; i < recipe.rating; i++) { %>
+                        ⭐
+                    <% } %>
+                    (<%= recipe.rating %>)
+                </div>
+            </div>
+        </div>
+        <% }) %>
+    </div>
+    
+    
+    <div id="comments-modal" class="modal flex justify-center items-center">
+        <div class="modal-content bg-white p-4 rounded-lg shadow-lg">
+            <span class="close-button">&times;</span>
+
+            <form id="comment-form" class="mb-4">
+                <input type="text" name="comment" id="" placeholder="Add a comment..." class="border border-gray-300 rounded-md py-2 px-4 w-full">
+                <button type="submit" class="bg-primary text-primary-foreground hover:bg-primary/80 px-4 py-2 rounded-lg">Submit</button>
+            </form>
+
+            <h2 class="mb-4">Comments</h2>
+            <ul class="comments-list">
+                <!-- Comments will be dynamically inserted here -->
+            </ul>
+        </div>
+    </div>
+    </div>
+    
+   
+    </div> 
+        </div>
+     </section>
+    
+    <section id="profile-section" class="all-section">
+        <div class="profile merge">
+          <div class="profile-container">
+            <div class="flex flex-col md:flex-row bg-background p-6 rounded-lg shadow-lg">
+                    <div class="flex-shrink-0 mb-6 md:mb-0 md:mr-6">
+                        <img id="profileImage" src="<%=user.image%>" alt="Profile Image"
+                            class="w-24 h-24 rounded-full border-4 border-primary shadow-lg" />
+                        <button id="editBtn"
+                            class="bg-accent text-accent-foreground hover:bg-accent/80 mt-2 p-2 rounded-full shadow-md transition duration-200">
+                            <span class="material-icons">edit</span>
+                        </button>
+                    </div>
+                    <div class="flex-grow max-w-72">
+                        <h1 id="profileName" class="text-3xl font-bold text-foreground"><%=user.name%></h1>
+                        <h4 id="profileName" class="text-muted-foreground font-italic username"><%=user.username%></h1>
+                        <p id="profileLocation" class="text-muted-foreground text-lg"><%=user.location%></p>
+                        <p id="profilePhone" class="text-muted-foreground mt-2 mobile-number"><i class="fa fa-phone"></i> <%=user.contact%></p>
+                        <p id="profileEmail" class="text-muted-foreground user-mail"><i class="fa fa-envelope"></i> <%=user.email%></p>
+                        <h2 class="mt-4 text-xl font-semibold text-primary">Bio</h2>
+                        <p id="profileBio" class="text-muted-foreground"><%=user.bio%> <a href="#" class="text-primary hover:underline">see
+                                more</a></p>
+                        <!-- <div class="mt-4 flex space-x-4">
+                            <button
+                                class="bg-accent text-accent-foreground hover:bg-accent/80 p-2 rounded-lg shadow-md transition duration-200 chat-button">Message</button>
+                            <button
+                                class="bg-secondary text-secondary-foreground hover:bg-secondary/80 p-2 rounded-lg shadow-md transition duration-200 create-button">Follow</button>
+                        </div> -->
+                    </div>
+                    <div class="md:w-1/2 md:ml-6 mt-6 md:mt-0">
+                        <div class="mt-4">
+                            <div class="flex">
+                                <button id="recipeTab"
+                                    class="w-1/2 bg-primary text-primary-foreground hover:bg-primary/80 p-2 rounded-tl-lg shadow-md transition duration-200">Saved
+                                    Recipe</button>
+                                <button id="infoTab"
+                                    class="w-1/2 bg-primary text-primary-foreground hover:bg-primary/80 p-2 rounded-tr-lg shadow-md transition duration-200">Personal
+                                    Info</button>
+                            </div>
+                            <div id="recipeContent" class="bg-card p-4 rounded-b-lg shadow-md mt-0.5">
+                                <ul class="list-none p-0">
+                                <% savedRecipes.forEach(recipe => { %>
+                                    <li class="p-4 mb-4 border-b border-gray-300">
+                                        <div class="flex items-center">
+                                            <i class="material-icons text-primary mr-2">title</i>
+                                            <p class="text-primary font-bold">Title: <%= recipe.title %><br></p>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <i class="material-icons text-primary mr-2">person</i>
+                                            <p class="text-primary">Author: <%= recipe.author %> <br></p>
+                                        </div>
+                                        <div class="flex items-center">
+                                            <i class="material-icons text-gray-700 mr-2">description</i>
+                                            <p class="text-gray-700"><%= recipe.description %> <br></p>
+                                        </div>
+                                        <a href="/recipe/<%= recipe._id%>" class="text-primary hover:underline">
+                                            <i class="material-icons">visibility</i> View
+                                        </a>
+                                    </li>
+                                    </li>
+                                <% }) %>
+                                </ul>
+                            </div>
+                            
+                            <div id="infoContent" class="hidden bg-card p-4 rounded-b-lg shadow-md mt-0.5">
+                                <h2 class="text-lg font-semibold text-primary">Personal Info</h2>
+                                <p class="text-muted-foreground">📞 <%=user.contact%></user.contact></p>
+                                <p class="text-muted-foreground">✉️ <%=user.email%></p>
+                                <p class="text-muted-foreground">Location: <%=user.location%></p>
+                                <p class="text-muted-foreground">Bio: <%=user.bio%></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Modal -->
+                <div id="editModal" class="fixed inset-0 hidden bg-gray-500 bg-opacity-75 flex items-center justify-center">
+                    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md h-full max-h-[90vh] overflow-y-auto">
+                        <h2 class="text-xl font-semibold text-primary mb-4">Edit Personal Info</h2>
+                        <form id="editForm" enctype="multipart/form-data">
+                            <div class="mb-4">
+                                <label class="block text-sm font-medium text-gray-700">Profile Photo</label>
+                                <input type="file" id="imageInput" accept="image/*" class="mt-1 block w-full" />
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-sm font-medium text-gray-700">Name</label>
+                                <input type="text" id="nameInput" value="<%=user.name%>"
+                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" />
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-sm font-medium text-gray-700">Username</label>
+                                <input type="text" id="usernameInput" value="<%=user.username%>"
+                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" />
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-sm font-medium text-gray-700">Location</label>
+                                <input type="text" id="locationInput" value="<%=user.location%>"
+                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" />
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-sm font-medium text-gray-700">Contact</label>
+                                <input type="text" id="contactInput" value="<%=user.contact%>"
+                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" />
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-sm font-medium text-gray-700">Email</label>
+                                <input type="email" id="emailInput" value="<%=user.email%>"
+                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" />
+                            </div>
+                            <div class="mb-4">
+                                <label class="block text-sm font-medium text-gray-700">Bio</label>
+                                <textarea id="bioInput"
+                                    class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm"><%=user.bio%></textarea>
+                            </div>
+                            <div class="flex justify-end space-x-2">
+                                <button type="button" id="cancelBtn"
+                                    class="bg-gray-300 text-gray-700 hover:bg-gray-400 px-4 py-2 rounded-lg">Cancel</button>
+                                <button type="submit" id="saveBtn"
+                                    class="bg-primary text-primary-foreground hover:bg-primary/80 px-4 py-2 rounded-lg">Save</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+
+            </div>
+        </div>
+        </div>
+     </section>
+
+    <section id="settings-section" class="all-section">
+    <div class="settings merge">
+        <div class="container">
+            <div class="leftbox">
+                <nav>
+                    <a onclick="tabs(0)" class="tab active">
+                        <i class="fa fa-user"></i>
+                    </a>
+                    <a onclick="tabs(1)" class="tab">
+                        <i class="fa fa-shield"></i>
+                    </a>
+                    <a onclick="tabs(2)" class="tab">
+                        <i class="fa fa-bars"></i>
+                    </a>
+                    <a onclick="tabs(3)" class="tab">
+                        <i class="fa fa-users"></i>
+                    </a>
+                </nav>
+            </div>
+            <div class="rightbox">
+            <div class="account tabShow">
+                <h1>Account Settings</h1>
+                <h2>Password</h2>
+                <p>Change your account password.</p>
+                <h2>Email</h2>
+                <p><%=user.email %></p>
+                <h2>Contact</h2>
+                <p><%=user.contact %></p>
+        
+                
+            
+                <!-- Button to open the modal -->
+                <button class="editAccountButton" onclick="openModal()">Edit Account Information</button>
+            </div>
+
+            <div id="editAccountModal" class="fixed inset-0 hidden bg-gray-500 bg-opacity-75 flex items-center justify-center">
+                <div class="bg-white p-6 rounded-lg shadow-lg w-full h-full max-w-md">
+                    <h2 class="text-xl font-semibold text-primary mb-4">Edit Account Information</h2>
+                    <form id="editAccountForm" onsubmit="updateSettings(event)" enctype="multipart/form-data">
+                        <!-- Form fields for editing account information -->
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700">Enter Previous Password</label>
+                            <input type="password" name="password" id="oldPass" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" />
+                            <label class="block text-sm font-medium text-gray-700">Enter New Password</label>
+                            <input type="password" name="password" id="newPass" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" />
+                            <label class="block text-sm font-medium text-gray-700">Confirm New Password</label>
+                            <input type="password" name="password" id="cPass" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" />
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700">Email</label>
+                            <input type="email" name="email" id="setMail" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" />
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700">Contact</label>
+                            <input type="text" name="contact" id="setPhone" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm" />
+                        </div>
+                        <div class="flex justify-end space-x-2">
+                            <button type="button" onclick="closeModal()"
+                                class="bg-gray-300 text-gray-700 hover:bg-gray-400 px-4 py-2 rounded-lg">Cancel</button>
+                            <button type="submit"
+                                class="bg-primary text-primary-foreground hover:bg-primary/80 px-4 py-2 rounded-lg">Save</button>
+                        </div>
+                    </form>
                 </div>
             </div>
 
-            <i class='bx bx-chevron-right toggle'></i>
-        </header>
-
-        <div class="menu-bar">
-            <div class="menu">
-                <li class="search-box">
-                        <i class='bx bx-search icon'></i>
-                           <input type="text" placeholder="Search...">
-                </li>
-                <ul class="menu-links">
-                    <li class="nav-link">
-                        <a href="#" onclick="Appear(this)">
-                            <i class='bx bx-home-alt icon'></i>
-                            <span class="text nav-text">Home</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bxs-dish icon'></i>
-                            <span class="text nav-text">Discover</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-user-circle icon'></i>
-                            <span class="text nav-text">Profile</span>
-                        </a>
-                    </li>
-
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-cog icon'></i>
-                            <span class="text nav-text">Settings</span>
-                        </a>
-                    </li>
-                    <li class="nav-link">
-                        <a href="#">
-                            <i class='bx bx-help-circle icon'></i>
-                            <span class="text nav-text">Help</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-
-            <div class="bottom-content">
-                <li class="">
-                    <a href="/u/logout">
-                        <i class='bx bx-log-out icon'></i>
-                        <span class="text nav-text">Logout</span>
-                    </a>
-                </li>
+                <div class="privacy tabShow">
+                    <h1>Privacy Info</h1>
+                    <h1>Recipes</h1>
+                    <h2>Public</h2>
+                    <p style="display: flex; align-items: center;">All users (including those who aren’t logged in) can view
+                        the user's recipes.
+                        <input type="radio" class="radio" value="" style="margin-left: 20px;">
+                    </p>
+                    <h2>Private</h2>
+                    <p style="display: flex; align-items: center;"> Only users who are connected to the person (e.g.,
+                        friends or followers) can see their recipes.
+                        <input type="radio" class="radio" value="" style="margin-left: 20px;">
+                    </p>
+                    <h1>Profile</h1>
+                    <h2>Public</h2>
+                    <p style="display: flex; align-items: center;">Anyone can view the user's profile, including their bio,
+                        profile picture, and any other public information.
+                        <input type="radio" class="radio" value="" style="margin-left: 20px;">
+                    </p>
+                    <h2>Private</h2>
+                    <p style="display: flex; align-items: center;"> Only users who are connected to the person (e.g.,
+                        friends or followers) can view profile.
+                        <input type="radio" class="radio" value="" style="margin-left: 20px;">
+                    </p>
+                </div>
+                <div class="preference tabShow">
+                    <h1>App Preference</h1>
+                    <button class="btn">Update</button>
+                </div>
+                <div class="about tabShow">
+                    <h1>About Us</h1>
+                    <p>Welcome to Recipe Hub – your ultimate destination for culinary creativity
+                        , inspiration, and community!<br>
+                        At Recipe Hub, we believe that cooking is more than just preparing meals;
+                        it's a way to connect, explore cultures, and create memorable experiences.<br>
+                        <br>
+                        Founded on the passion for sharing delicious recipes and fostering a love for food,
+                        our mission is to bring together home cooks, food enthusiasts,
+                        and professional chefs from around the world.,<br>
+                        <br>
+                        Our Vision:
+                        We envision a world where everyone has access to delicious,
+                        nutritious, and easy-to-make recipes that bring joy to their tables.
+                        By fostering a supportive and inclusive environment,
+                        Recipe Hub aims to inspire creativity in the kitchen
+                        and make cooking a delightful part of everyday life.<br>
+                        <br>
+                        Join Us:
+                        Whether you're a seasoned chef, a budding home cook, or someone who simply loves good food,
+                        Recipe Hub welcomes you. Dive into our collection, share your culinary creations,
+                        and be part of a community that celebrates the art of cooking together.<br>
+                        <br>
+                        Thank you for being a part of Recipe Hub.
+                        Let's cook, share, and savor the wonderful journey of food together!
+                    </p>
+                </div>
     
-                <li class="mode">
-                    <div class="moon-sun">
-                        <i class='bx bx-moon icon moon'></i>
-                        <i class='bx bx-sun icon sun'></i>
-                    </div>
-                    <span class="mode-text text">Dark Mode</span>
-    
-                    <div class="toggle-switch">
-                        <span class="switch"></span>
-                    </div>
-                </li>
             </div>
         </div>
-   </nav>
-        
-     <section class="home" id="home">
-        <div class="text">Hello <%=username %>,</div>
-        <div class="text">Home</div>
-     </section>
-     <section class="home" id="home">
-        <div class="text">Home</div>
-     </section>
-     <section class="home" id="home">
-        <div class="text">Home</div>
-     </section>
 
-   <script src="/scripts/side.js"></script>
-   <script>
-    var home = document.getElementById("home")
-    function Appear(location){
-        
-            home.style.display = "block";
-        
+          </section>
+     
+
+    <section id="help-section" class="all-section">
+        <h1>Help Section</h1>
+        <p>This is the help section where users can find support and answers to their questions.</p>
+    </section>
+
+    <script>
+        function openModal() {
+                document.getElementById('editAccountModal').classList.remove('hidden');
+            }
+
+            function closeModal() {
+                document.getElementById('editAccountModal').classList.add('hidden');
+            }
+
+        function Tabs(tabIndex) {
+            const sections = document.querySelectorAll('.all-section');
+            sections.forEach((section, index) => {
+                if (index === tabIndex) {
+                    section.style.display = 'block';
+                } else {
+                    section.style.display = 'none';
+                }
+            });
+        }
+                // Set the default tab to display
+
+               
+        document.addEventListener('DOMContentLoaded', () => {
+            const sections = document.querySelectorAll('.all-section');
+            // Ensure the modal is visible by removing any 'hidden' class
+            const newLoginModal = document.getElementById('newLoginModal');
+            if(newLoginModal){
+                if(!newLoginModal.classList.contains('hidden')) {
+                sections.forEach((section) => {
+                section.style.display = 'none';
+                });
+             }
+            }else{
+                Tabs(0)
+            }
+          
+          
+        });
+    </script>
+    <script type="text/javascript">
+          // Function to close the new login modal
+    function closeLoginModal() {
+        document.getElementById('editModal').classList.add('hidden');
     }
-   </script>
-<script src="scripts/loader.js"></script>
-</body>  
+    function updateSettings(event) {
+        event.preventDefault(); // Prevent the default form submission  
+        // Collect form data into an object
+        const settingsData = {
+            new_pass: document.getElementById("newPass").value.trim(),
+            email: document.getElementById("setMail").value.trim(),
+            contact: document.getElementById("setPhone").value.trim(),
+            old_pass: document.getElementById("oldPass").value.trim(),
+            c_pass: document.getElementById("cPass").value.trim()
+        };
+        if(settingsData.new_pass !== settingsData.c_pass){
+            alert("Passwords do not match");
+            return;
+        }else{
+            try {
+            fetch("/u/update", {
+                method: "POST",
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(settingsData)
+            }).then(response => response.json()).then(data => {
+                if (data.success) {
+                    alert("Settings updated successfully!");
+                    closeModal(); // Hide the modal
+                } else {
+                    alert("An error occurred. Please try again.");
+                    console.error("Error updating settings:", data.message);
+                }
+            }).catch(error => {
+                console.error("Fetch error:", error);
+                alert("An unexpected error occurred. Please try again.");
+            });
+        } catch (error) {
+            console.log(error)
+            alert(error)
+        }
+        }
+
+    }
+        // Tab switching functionality
+        document.getElementById('recipeTab').addEventListener('click', function () {
+            document.getElementById('recipeContent').classList.remove('hidden');
+            document.getElementById('infoContent').classList.add('hidden');
+        });
+       
+        document.getElementById('infoTab').addEventListener('click', function () {
+            document.getElementById('infoContent').classList.remove('hidden');
+            document.getElementById('recipeContent').classList.add('hidden');
+        });
+
+        // Modal functionality
+        document.getElementById('editBtn').addEventListener('click', function () {
+            document.getElementById('editModal').classList.remove('hidden');
+        });
+
+        document.getElementById('cancelBtn').addEventListener('click', function () {
+            document.getElementById('editModal').classList.add('hidden');
+        });
+
+      
+  // Save button functionality
+  document.getElementById('editForm').addEventListener('submit', function (event) {
+    event.preventDefault(); // Prevent traditional form submission
+
+    const formData = new FormData();
+    const imageFile = document.getElementById("imageInput").files[0];
+
+    if (imageFile) {
+        formData.append('file', imageFile); // Append the image file
+    }
+
+    // Append other form data
+    formData.append('name', document.getElementById("nameInput").value);
+    formData.append('username', document.getElementById("usernameInput").value);
+    formData.append('location', document.getElementById("locationInput").value);
+    formData.append('contact', document.getElementById("contactInput").value);
+    formData.append('email', document.getElementById("emailInput").value);
+    formData.append('bio', document.getElementById("bioInput").value);
+
+    console.log([...formData.entries()]); // Log the form data for debugging
+
+    // Submit form data using fetch
+    fetch("/u/update", {
+        method: "POST",
+        body: formData // FormData is automatically set to 'multipart/form-data'
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert("Profile updated successfully!");
+            closeLoginModal(); // Hide the modal
+        } else {
+            alert("An error occurred. Please try again.");
+        }
+    })
+    .catch(error => console.error('Error:', error));
+});
+
+  
+  
+
+
+
+    function closeNewLoginModal() {
+        document.getElementById('newLoginModal').classList.add('hidden');
+    }
+
+    // Function to handle new user login form submission
+    function newLogin(event) {
+        event.preventDefault(); // Prevent the default form submission
+        document.getElementById('newSaveBtn').disabled = true; // Disable the submit button
+        // Collect form data into an object
+        const userData = {
+            name: document.getElementById("newNameInput").value.trim(),
+            username: document.getElementById("newUsernameInput").value.trim(),
+            location: document.getElementById("newLocationInput").value.trim(),
+            contact: document.getElementById("newContactInput").value.trim(),
+            email: document.getElementById("newEmailInput").value.trim(),
+            bio: document.getElementById("newBioInput").value.trim()
+            // Note: Handling file uploads (e.g., profile photo) requires a different approach
+        };
+
+        // Optional: Validate the data before sending
+        if (!userData.name || !userData.username || !userData.email) {
+            alert("Please fill in all required fields.");
+            return;
+        }
+
+        // Log the data for debugging
+        console.log("Submitting new user data:", userData);
+
+        // Submit the form data using fetch as JSON
+        fetch("/u/update", {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(userData)
+        })
+        .then(response => response.json())
+        .then(data => {
+           
+            if (data.success) {
+                alert("Profile updated successfully!");
+                closeNewLoginModal(); // Hide the modal
+                
+                // Reload the page to reflect the changes
+                 location.reload();
+            } else {
+                alert("An error occurred. Please try again.");
+                console.error("Error updating profile:", data.message);
+            }
+        })
+        .catch(error => {
+            console.error("Fetch error:", error);
+            alert("An unexpected error occurred. Please try again.");
+        });
+    }
+ 
+    </script>
+  <script>
+
+
+    // Show comments modal
+async function showCommentsModal(recipeId) {
+    try {
+                // Populate and show modal with comments
+                const modal = document.getElementById('comments-modal');
+        const commentsList = modal.querySelector('.comments-list');
+        // Fetch comments from server
+        const response = await fetch(`/recipe/comments/${recipeId}`);
+        const data = await response.json();
+        if(data.success){
+            console.log(data)
+            
+
+
+        // Clear existing comments
+        commentsList.innerHTML = '';
+
+        // Append each comment to the list
+        data.comments.forEach(comment => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `${comment.user}: ${comment.text}`;
+            commentsList.appendChild(listItem);
+        });
+
+        // Show the modal
+        modal.style.display = 'block';
+        }
+
+
+        // Handle form submission for adding a new comment
+        const commentForm = modal.querySelector('#comment-form');
+        commentForm.onsubmit = function(e) {
+            e.preventDefault();
+            const commentText = e.target.elements['comment'].value;
+
+            // Clear the input field
+            e.target.elements['comment'].value = '';
+
+            // Add the new comment
+            addComment(recipeId, commentText);
+            modal.style.display = 'none';
+        };
+
+        // Close the modal when the close button is clicked
+        modal.querySelector('.close-button').onclick = function() {
+            modal.style.display = 'none';
+        };
+
+        // Close the modal when clicking outside of the modal content
+        window.onclick = function(event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        };
+
+    } catch (error) {
+        console.error('Error fetching comments:', error);
+        alert('Failed to load comments. Please try again later.');
+    }
+}
+
+// Add a comment to the server
+function addComment(recipeId, commentText) {
+    fetch(`/recipe/engage/${recipeId}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ engagementType: 'comment', comment: commentText })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+           
+            showCommentsModal(recipeId); // Refresh comments
+        }
+    });
+}
+
+
+
+
+// Update engagement data
+async function updateEngagement(recipeId, type) {
+   await  fetch(`/recipe/engage/${recipeId}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ engagementType: type })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            const recipe = data.Recipe_update;
+            console.log(data);
+            // Update the UI with new engagement data
+            document.getElementById(`comment-count-${recipeId}`).textContent = recipe.comments.length;
+            document.getElementById(`like-count-${recipeId}`).textContent = recipe.likes.length;
+            document.getElementById(`share-count-${recipeId}`).textContent = recipe.shares.length;
+            document.getElementById(`save-count-${recipeId}`).textContent = recipe.saves.length;
+        } else {
+            alert("An error occurred. Please try again.");
+        }
+    });
+
+    if (type === 'share') {
+        copyLink(recipeId);
+    }
+}
+
+
+function copyLink(recipeId) {
+    const link = window.location.origin + '/recipe/' + recipeId;
+    navigator.clipboard.writeText(link)
+        .then(() => {
+            alert('Link copied to clipboard!');
+        })
+        .catch((error) => {
+            console.error('Failed to copy link:', error);
+        });
+}
+    </script>
+    
+    
+</body>
 </html>
+
        
