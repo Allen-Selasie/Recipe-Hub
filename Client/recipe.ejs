@@ -15,16 +15,16 @@
     <header>
       <h1>Recipe Management</h1>
       <nav>
-        <a href="#">Home</a>
-        <a href="#">Profile</a>
-        <a href="#">Logout</a>
+        <a href="/">Home</a>
+        <a href="/home">Profile</a>
+        <a href="/u/logout">Logout</a>
       </nav>
     </header>
 
     <main>
       <section class="recipe-form">
         <h2>Upload New Recipe</h2>
-        <form id="recipeForm">
+        <form id="recipeForm" enctype="multipart/form-data">
             <div id="field">
                <label for="title">Recipe Title:</label>
                <input type="text" id="title" name="title" required />
@@ -93,22 +93,17 @@
            </div>
           
           <div id="field">
-            <label for="media">Upload Photos/Videos:</label>
-            <input type="file" id="media" name="media" multiple />
+            <label for="media">Upload Photos:</label>
+            <input type="file" id="media"  accept="image/*" name="media" multiple />
           </div>
-          <button type="submit">Submit Recipe</button>
+          <button type="submit" id="recipeUp">Upload</button>
         </form>
       </section>
 
-      <section class="recipe-list">
-        <h2>Your Recipes</h2>
-        <ul id="recipeList">
-          <!-- Recipes will be dynamically loaded here -->
-        </ul>
-      </section>
+      
     </main>
 
-    <template id="recipeTemplate">
+    <!-- <template id="recipeTemplate">
       <li class="recipe-item">
         <h3 class="recipe-title"></h3>
         <p>
@@ -140,10 +135,10 @@
           <button class="submit-review">Submit Review</button>
         </div>
         <ul class="reviews-list">
-          <!-- Reviews will be dynamically loaded here -->
+         
         </ul>
       </li>
-    </template>
+    </template> -->
 
     <script src="/scripts/recipe.js"></script>
     <script src="/scripts/loader.js"></script>

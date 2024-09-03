@@ -6,6 +6,9 @@
     <title>Recipe Hub - Home</title>
     <link rel="stylesheet" href="/styles/styles.css">
         <link rel="stylesheet" href="styles/loader.css">
+        <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <body>
     <!-- loader -->
@@ -45,19 +48,49 @@
     <section class="featured-recipes">
         <h2>Featured Recipes</h2>
 
-        <div class="recipe-grid">
-            <!-- Dessert Recipes -->
-             <% recipies.forEach((recipe)=>{ %>
-                <div class="recipe-card">
-                    <img src="<%= recipe.image%>" alt="<%=recipe.title%>">
-                    <h4><%=recipe.title%></h4>
-                    <p><%=recipe.description%></p>
-                </div>
-           <%  }) %>
        
+        
+        <div class="recipe-container">
+            <!-- Existing recipe cards here -->
+             <% recipes.forEach(recipe => { %>
+            <div class="recipe-card">
+                <div class="recipe-image-container">
+                    <img src="<%=recipe.image %>" alt="Gourmet BBQ Chicken Pizza" class="recipe-image">
+                   <a href="/recipe/<%=recipe.recipeId %>"></a> <button class="view-more">View</button>
+                </div>
+                <div class="recipe-icons">
+                    <div class="left-icons">
+                        <%=recipe.comments%><i class="material-icons">comment</i>
+                        <%=recipe.likes%><i class="material-icons">favorite_border</i>
+                        <%=recipe.shares%><i class="material-icons">share</i>
+                    </div>
+                    <div>
+                     <%=recipe.saves%><i class="material-icons save">bookmark_border</i>
+                    </div>
+                </div>
+                <div class="recipe-info">
+                    <h3><%=recipe.title%></h3>
+                    <div class="recipe-details">
+                        <i class="material-icons">schedule</i>
+                        <p><%=recipe.time%></p>
+                        <i class="material-icons cooking-icon">restaurant_menu</i> <!-- Cooking icon -->
+                        <p class="difficulty"><%=recipe.difficulty%></p><br> <!-- Cooking difficulty -->
+                        <i class="material-icons">person</i>
+                        <span class="author-username"><%=recipe.author%></span>
+                    </div>
+                    <div class="rating">
+                        <% for (let i = 0; i < recipe.rating; i++) { %>
+                            ⭐
+                        <% } %>
+                        (<%=recipe.rating%>)
+                    </div>
+                </div>
+                </div>
+                <% }) %>
+            </div>   
            
 
-        <div class="extra-content">
+        <!-- <div class="extra-content">
             <div class="extra-card">
                 <img src="https://images.ctfassets.net/4f3rgqwzdznj/7DnxFqiaGztCcNjPkzDr8Q/991d0db65a03f816b952acd927b4820c/fruit-veggies-meat-weights-1299421209.jpg" alt="Fitness">
                 <h4>Fitness</h4>
@@ -73,7 +106,7 @@
                 <h4>Eating Well</h4>
                 <p>Learn about balanced nutrition and making healthier food choices.</p>
             </div>
-        </div> 
+        </div>  -->
     </section>
 
     <!-- Footer Section -->

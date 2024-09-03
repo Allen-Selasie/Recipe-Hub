@@ -1,19 +1,37 @@
+//packages
+const mongoose =  require('mongoose');
+const MongoStore = require('connect-mongo');
 const express = require('express');
 const app = express();
 const session = require("express-session")
 const path = require("path");
-const UserRoutes = require('./routes/userRoutes');
-const mongoose =  require('mongoose');
-const Card = require('./models/cards');
-const requireLogin = require('./Middleware/authMiddleware');
-require('dotenv').config();
-const MongoStore = require('connect-mongo');
-const Category = require('./models/category');
+const compression = require('compression');
 
+
+//Routes
+const UserRoutes = require('./routes/userRoutes');
+const recipeRouter = require('./routes/recipeRoutes');
+
+
+
+
+//Middleware
+const requireLogin = require('./Middleware/authMiddleware');
+
+
+
+//Models
+const Category = require('./models/category');
+const Recipe = require('./models/recipe');
+const Card = require('./models/cards');
+
+
+//Environment variables
+require('dotenv').config();
 const mongouri = process.env.mongouri;
 const port = process.env.PORT || 3000;
 
-
+//connect to database
 mongoose.connect(mongouri,{
   maxPoolSize:100,
   dbName:"recipe_hub"
@@ -29,8 +47,8 @@ app.set("views", path.join(__dirname, "../Client"));
 app.set("view engine", "ejs");
 app.use(express.static(path.join(__dirname, "../Client/public")));
 
-// //enable compression
-// app.use(compression());
+//enable compression
+app.use(compression());
 
 //session management
 app.use(
@@ -48,18 +66,20 @@ app.use(
   })
 );
 
-  
+ 
+//Main Routes
 app.get("/",async (req,res)=>{
-  const recipies = await Card.find();
-  res.render("index",{recipies});
+  const recipes = await Recipe.getFeed();
+  res.render("index",{recipes});
 })
 
 app.get("/home",requireLogin, async(req,res)=>{
   const user = req.session.user;
   try {
+    const recipes = await Recipe.getFeed(user._id);
    
   const categories = await Category.find();
-  res.render("home",{user, categories});
+  res.render("home",{user, categories, recipes});
 
   } catch (error) {
     console.log(error);
@@ -68,8 +88,16 @@ app.get("/home",requireLogin, async(req,res)=>{
 })
 
 
+//External Routes
+app.use("/u",UserRoutes);
+app.use('/recipe',requireLogin,recipeRouter);
 
-app.use("/u",UserRoutes)
+
+//404 Route
+app.use((req, res) => {
+  res.send("404: Page not found");
+});
+
 
 app.listen(port,()=>{
     console.log(`app is listenind on port ${port}!!`);

@@ -282,16 +282,19 @@ UserRoutes.get("/my-recipes", requireLogin, async (req, res) => {
 });
 
 
-UserRoutes.post('/add-recipe', requireLogin, async (req, res) => {
+UserRoutes.post('/add-recipe', upload.array('file',10), requireLogin, async (req, res) => {
     const { title,description, ingredients, instructions,category,time,difficulty } = req.body;  
     const user = req.session.user;
+  console.log('uploading');
 
-    if (!req.file) {
+    if (!req.files) {
+      console.log('no file');
       return res.status(400).json({ message: 'No file uploaded' });
     }
     try {
-      
-        const imageUrl = await uploadImage(req.file);
+        //console.log(req.files)
+        const imageUrl = await uploadImage(req.files);
+        //console.log(imageUrl);
         const newRecipe = new Recipe({
             title,
             description,
@@ -300,10 +303,13 @@ UserRoutes.post('/add-recipe', requireLogin, async (req, res) => {
             category,
             time,
             difficulty,
-            image: imageUrl,
+            media: imageUrl,
+            author:user._id,
         });
+        console.log(newRecipe);
+
         await newRecipe.save();
-        res.status(201).json({ message: 'Recipe added successfully' });
+        res.status(201).json({ message: 'Recipe added successfully', sucess: true });
     }catch (error) {
         console.error(error);
         res.status(500).send("Internal Server Error");
@@ -312,4 +318,6 @@ UserRoutes.post('/add-recipe', requireLogin, async (req, res) => {
   
   
   });
+
+
 module.exports = UserRoutes;

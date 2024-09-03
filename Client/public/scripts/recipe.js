@@ -1,50 +1,47 @@
-document.addEventListener('DOMContentLoaded', function () {
-    const recipeForm = document.getElementById('recipeForm');
-    const recipeList = document.getElementById('recipeList');
-    const recipeTemplate = document.getElementById('recipeTemplate').content;
+document.getElementById('recipeForm').addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent traditional form submission
+    document.getElementById('recipeUp').disabled = true; // Disable the submit button
+    const formData = new FormData();
 
-    recipeForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-        const formData = new FormData(recipeForm);
-        const recipeItem = document.importNode(recipeTemplate, true);
+    // Collecting form data
+    formData.append('title', document.getElementById('title').value);
+    formData.append('description', document.getElementById('description').value);
+    formData.append('category', document.getElementById('categories').value);
+    formData.append('ingredients', document.getElementById('ingredients').value);
+    formData.append('instructions', document.getElementById('instructions').value);
 
-        recipeItem.querySelector('.recipe-title').textContent = formData.get('title');
-        recipeItem.querySelector('.recipe-ingredients').textContent = formData.get('ingredients');
-        recipeItem.querySelector('.recipe-instructions').textContent = formData.get('instructions');
-        recipeItem.querySelector('.recipe-prepTime').textContent = formData.get('prepTime');
-        recipeItem.querySelector('.recipe-difficulty').textContent = formData.get('difficulty');
-        recipeItem.querySelector('.recipe-tags').textContent = formData.get('tags');
+    // Combine prep time into one string
+    const prepTime = `${document.getElementById('prepHours').value} hours ${document.getElementById('prepMinutes').value} minutes`;
+    formData.append('time', prepTime);
 
-        const mediaContainer = recipeItem.querySelector('.recipe-media');
-        const mediaFiles = formData.getAll('media');
-        mediaFiles.forEach(file => {
-            const fileURL = URL.createObjectURL(file);
-            let mediaElement;
+    formData.append('difficulty', document.getElementById('difficulty').value);
 
-            if (file.type.startsWith('image/')) {
-                mediaElement = document.createElement('img');
-                mediaElement.src = fileURL;
-            } else if (file.type.startsWith('video/')) {
-                mediaElement = document.createElement('video');
-                mediaElement.src = fileURL;
-                mediaElement.controls = true;
-            }
+    // Collecting and appending files
+    const mediaFiles = document.getElementById('media').files;
+    for (let i = 0; i < mediaFiles.length; i++) {
+        formData.append('file', mediaFiles[i]);
+    }
 
-            mediaContainer.appendChild(mediaElement);
-        });
+    // Debugging: Log the form data (not possible with FormData directly, but for files count)
+    console.log('Files:', mediaFiles.length);
 
-        recipeList.appendChild(recipeItem);
-
-        recipeForm.reset();
+    // Sending the form data via fetch
+    fetch('/u/add-recipe', {
+        method: 'POST',
+        body: formData // FormData is automatically set to 'multipart/form-data'
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+        if (data.success) {
+            alert('Recipe added successfully!');
+            location.reload();
+        } else {
+            alert('An error occurred. Please try again.');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('An error occurred. Please try again.');
     });
-
-    recipeList.addEventListener('click', function (e) {
-        if (e.target.classList.contains('delete-recipe')) {
-            e.target.closest('.recipe-item').remove();
-        } else if (e.target.classList.contains('submit-review')) {
-            const reviewTextarea = e.target.closest('.rating-review').querySelector('.review');
-            const rating = e.target.closest('.rating-review').querySelector('.rating').value;
-            const reviewText = reviewTextarea.value;
-            const reviewsList = e.target.closest('.recipe-item').querySelector} 
-    }   )
-}  )        
+});
