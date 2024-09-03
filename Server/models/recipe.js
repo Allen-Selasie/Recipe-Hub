@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const User = require('./user');
 
 const recipeSchema = new mongoose.Schema({
     title: {
@@ -140,7 +141,6 @@ recipeSchema.statics.getFeed = async function (userId = null) {
                             { $floor: { $multiply: [{ $rand: {} }, { $size: "$media" }] } }
                         ]
                     },
-                    recipeId: "$_id",
                     likes: { $size: "$likes" },
                     comments: { $size: "$comments" },
                     saves: { $size: "$saves" },
@@ -321,7 +321,7 @@ recipeSchema.methods.addEngagement = async function (engagementType, userId, opt
             throw new Error('Invalid engagement type');
         }
 
-        const userObjectId = mongoose.Types.ObjectId(userId);
+        const userObjectId = userId;
 
         switch (engagementType) {
             case 'like':
@@ -339,6 +339,8 @@ recipeSchema.methods.addEngagement = async function (engagementType, userId, opt
             case 'save':
                 if (!this.saves.includes(userObjectId)) {
                     this.saves.push(userObjectId);
+                    User.findByIdAndUpdate(userObjectId, { $push: { saves: this._id } }).exec();
+                    
                 }
                 break;
 
@@ -415,10 +417,9 @@ recipeSchema.statics.getFeatured = async function () {
                     description: 1,
                     image: { $arrayElemAt: ["$media", { $floor: { $multiply: [{ $rand: {} }, { $size: "$media" }] } }] },
                     recipeId: "$_id",
-                    author: "$author.username",
+                   
                     category: "$category.name",
-                    difficulty: 1,
-                    time: 1
+                   
                 }
             }
         ]);
@@ -430,19 +431,18 @@ recipeSchema.statics.getFeatured = async function () {
     }
 };
 
-recipeSchema.statics.getComments = async function (recipeId) {
+// Static method to fetch comments for a recipe
+recipeSchema.methods.getComments = async function(recipeId) {
     try {
-        const recipe = await this.findById(recipeId).populate('comments.user', 'username');
+        const recipe = await this.populate('comments.user', 'username');
         if (!recipe) {
             throw new Error('Recipe not found');
         }
 
-        const comments = recipe.comments.map(comment => {
-            return {
-                user: comment.user,
-                comment: comment.comment
-            };
-        });
+        const comments = recipe.comments.map(comment => ({
+            user: comment.user.username, // Assuming 'username' is the field you want from the user
+            text: comment.comment
+        }));
 
         return comments;
     } catch (error) {
@@ -450,6 +450,7 @@ recipeSchema.statics.getComments = async function (recipeId) {
         throw error;
     }
 }
+
 
 const Recipe = mongoose.model('Recipe', recipeSchema, 'recipes');
 

@@ -11,7 +11,7 @@ document.getElementById('recipeForm').addEventListener('submit', function(event)
     formData.append('instructions', document.getElementById('instructions').value);
 
     // Combine prep time into one string
-    const prepTime = `${document.getElementById('prepHours').value} hours ${document.getElementById('prepMinutes').value} minutes`;
+    const prepTime = `${document.getElementById('prepHours').value} h ${document.getElementById('prepMinutes').value} min`;
     formData.append('time', prepTime);
 
     formData.append('difficulty', document.getElementById('difficulty').value);

@@ -1,0 +1,325 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:400,900|Montserrat|Roboto');
+
+body{
+  background: linear-gradient(to right, #2ed573, #f9ca24);
+  overflow-x: hidden;
+}
+.section{
+    background: white;
+        margin: 0 auto;
+        position: relative;
+        margin-top: 5%;
+        margin-bottom: 2%;
+        box-shadow: 2px 5px 20px rgba(119, 119, 119, .5);
+        border-radius: 5px;
+        padding: 5px 40px;
+}
+
+.container{
+  background: white;
+  margin: 0 auto;
+  position: relative;
+  margin-top: 5%;
+  margin-bottom: 2%;
+ 
+  border-radius: 5px;
+}
+
+.leftbox{
+  float: left;
+  top: 7%;
+  left: 4%;
+  position: absolute;
+  width: 30%;
+  height: 39%;
+  background: white;
+  box-shadow: 2px 5px 20px rgba(119,119,119,.5);
+  border: .1em solid #fff;
+  border-radius: 6px;
+}
+
+.recipe-media img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.rightbox{
+  width: 60%;
+  margin-left: 35%;
+  padding-top: 5px;
+ 
+}
+
+.recipe-card {
+  float: left;
+  top: 55%;
+  left: 4%;
+  position: absolute;
+  width: 25%;
+  height: 39%;
+  /*background: white;
+  box-shadow: 2px 5px 20px rgba(119,119,119,.5);
+  border: .1em solid #fff;*/
+}
+.recipe-title {
+    font-size: 33px;
+    width: fit-content;
+    font-weight: bolder;
+    font-style: italic;
+    margin-bottom: 20px;
+    margin-left: 23%;
+    font-family: 'Roboto',sans-serif;
+    letter-spacing: 0.1rem;
+    text-decoration-line: underline;
+    border-bottom: 3px solid black;
+}
+.servings,
+.time{
+    display: inline;
+    border-bottom: 1px solid black;
+    font-size: 40px;
+    font-weight: bolder;
+    text-transform: uppercase;
+    font-style: italic;
+}
+
+
+.recipe-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+
+
+.recipe-info div {
+    display: flex;
+    font-size: 16px;
+}
+
+
+.recipe-info .material-icons {
+    font-size: 20px;
+    margin-right: 8px;
+    color: black
+}
+
+.tags {
+    margin-bottom: 20px;
+}
+
+
+.tags span {
+    display: inline-block;
+    background-color: #f0f0f0;
+    color: #555;
+    padding: 5px 10px;
+    margin-right: 10px;
+    border-radius: 15px;
+    font-size: 14px;
+}
+
+.tags .category, 
+.tags .dietary,
+.tags .dietary1 {
+    display: inline-block;
+    font-size:20px;
+    color: #000000;
+    background: #ffffff;
+    cursor: pointer;
+}
+.tags .category {
+    margin-left: 110px;
+    border-bottom: 3px solid black;
+}
+.tags .dietary1 {
+    border-top: 3px solid black;
+    margin-left: 73px;
+}
+.tags .dietary {
+    border-top: 3px solid black;
+    display: block;
+    margin-top: -35px;
+    margin-left: 190px;
+}
+.tags .category:hover, 
+.tags .dietary:hover,
+.tags .dietary1:hover {
+    border: 3px solid black;
+}
+/*This side covers the ingredients */
+
+.ingredients, .directions, .notes {
+    margin-bottom: 20px;
+}
+.ingredients >ul li {
+    list-style: square;
+    list-style-position: inside;
+    font-size: 30px;
+    margin-left: 30px;
+    font-family: sans-serif;
+    
+}
+.ingredients h2 {
+    position: relative;
+    display: inline-block;
+    font-size: 25px;
+    width: fit-content;
+    border: 3px solid black;
+    font-family: 'Montserrat',sans-serif;
+    border-bottom: none;
+    border-left: none;
+    border-radius: 13px;
+    margin-left: 25%;
+    letter-spacing: .1rem;
+}
+.ingredients h2:hover ,
+.directions h2:hover{
+    border: 3px solid black;
+    border-right: none;
+    border-top: none;
+    border-top: none;
+    transition: .1s all;
+}
+.ingredients {
+    box-shadow: 2px 5px 20px rgba(119,119,119,.5);
+    border-radius: 15px;
+    width: 38%;
+    height: fit-content;
+    margin-top: 60px;
+}
+
+ .directions {
+    margin-top: -335px;
+    margin-left: 40%;
+    background: 1px solid #f0f0f0;
+    box-shadow: 2px 5px 20px rgba(119,119,119,.5);
+    border-radius: 15px;
+    width: 60%;
+    height: 320px;
+    
+ }
+ .directions h2 {
+    position: relative;
+    display: inline-block;
+    font-size: 30px;
+    width: fit-content;
+    border: 3px solid black;
+    font-family: 'Montserrat',sans-serif;
+    border-bottom: none;
+    border-left: none;
+    border-radius: 13px;
+    margin-left: 25%;
+    letter-spacing: .1rem;
+    transition: .1s all;
+}
+ .directions >ol li {
+    list-style: circle;
+    list-style-position: inside;
+    font-size: 24px;
+    margin-left: 15px;
+    font-family: sans-serif;
+
+}
+
+
+ul, ol {
+    margin: 0;
+    padding-left: 20px;
+}
+
+.notes p {
+    font-size: 14px;
+    color: #555;
+}
+
+
+.recipe-icons {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px;
+}
+
+.recipe-icons .left-icons {
+    display: flex;
+    align-self: center;
+    gap: 30px; /* Increase space between icons */
+}
+
+.recipe-icons .left-icons span {
+    display: inline-block;
+    margin-right: 0;
+    font-size: 0.9em;
+    margin-left: 10px;
+}
+
+.recipe-icons .left-icons i{
+    margin-left: -27px;
+}
+
+.recipe-icons .material-icons {
+    font-size: 24px;
+    color: #252222;
+}
+
+.recipe-icons .save {
+    margin-left: auto;
+}
+
+.recipe-info {
+    padding: 10px 15px;
+}
+
+.recipe-info h3 {
+    margin: 0;
+    font-size: 1.1em;
+    color: #333;
+}
+
+.recipe-description {
+    margin-top: 5px;
+    color: #757575;
+    font-size: 0.9em;
+}
+
+.recipe-details {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    color: #757575;
+    font-size: 0.9em;
+}
+
+.recipe-details .material-icons {
+    font-size: 18px;
+    margin-right: 5px;
+    color: #ee9106;
+}
+
+.cooking-icon {
+    font-size: 18px; /* Size of the cooking icon */
+    margin: 0 70px; /* Spacing around the icon */
+    color: #ee9106; /* Color of the icon */
+}
+
+.rating {
+    margin-top: 5px;
+    color: #ffa500;
+    font-size: 0.9em;
+}
+
+.recipe-author {
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    color: #333;
+    font-size: 0.9em;
+}
+
+.recipe-author .material-icons {
+    font-size: 25px;
+    margin-right: 5px;
+    color: #757575;
+}

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Feed Page</title>
+
+    <link rel="stylesheet" href="/styles/feed.css" />
+
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <!-- newly added code -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+    <script
+      src="https://unpkg.com/unlazy@0.11.3/dist/unlazy.with-hashing.iife.js"
+      defer
+      init
+    ></script>
+    <script type="text/javascript">
+      window.tailwind.config = {
+        darkMode: ["class"],
+        theme: {
+          extend: {
+            colors: {
+              border: "hsl(var(--border))",
+              input: "hsl(var(--input))",
+              ring: "hsl(var(--ring))",
+              background: "hsl(var(--background))",
+              foreground: "hsl(var(--foreground))",
+              primary: {
+                DEFAULT: "hsl(var(--primary))",
+                foreground: "hsl(var(--primary-foreground))",
+              },
+              secondary: {
+                DEFAULT: "hsl(var(--secondary))",
+                foreground: "hsl(var(--secondary-foreground))",
+              },
+              destructive: {
+                DEFAULT: "hsl(var(--destructive))",
+                foreground: "hsl(var(--destructive-foreground))",
+              },
+              muted: {
+                DEFAULT: "hsl(var(--muted))",
+                foreground: "hsl(var(--muted-foreground))",
+              },
+              accent: {
+                DEFAULT: "hsl(var(--accent))",
+                foreground: "hsl(var(--accent-foreground))",
+              },
+              popover: {
+                DEFAULT: "hsl(var(--popover))",
+                foreground: "hsl(var(--popover-foreground))",
+              },
+              card: {
+                DEFAULT: "hsl(var(--card))",
+                foreground: "hsl(var(--card-foreground))",
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <style type="text/tailwindcss">
+      @layer base {
+        :root {
+          --background: 0 0% 100%;
+          --foreground: 240 10% 3.9%;
+          --card: 0 0% 100%;
+          --card-foreground: 240 10% 3.9%;
+          --popover: 0 0% 100%;
+          --popover-foreground: 240 10% 3.9%;
+          --primary: 240 5.9% 10%;
+          --primary-foreground: 0 0% 98%;
+          --secondary: 240 4.8% 95.9%;
+          --secondary-foreground: 240 5.9% 10%;
+          --muted: 240 4.8% 95.9%;
+          --muted-foreground: 240 3.8% 46.1%;
+          --accent: 240 4.8% 95.9%;
+          --accent-foreground: 240 5.9% 10%;
+          --destructive: 0 84.2% 60.2%;
+          --destructive-foreground: 0 0% 98%;
+          --border: 240 5.9% 90%;
+          --input: 240 5.9% 90%;
+          --ring: 240 5.9% 10%;
+          --radius: 0.5rem;
+        }
+        .dark {
+          --background: 240 10% 3.9%;
+          --foreground: 0 0% 98%;
+          --card: 240 10% 3.9%;
+          --card-foreground: 0 0% 98%;
+          --popover: 240 10% 3.9%;
+          --popover-foreground: 0 0% 98%;
+          --primary: 0 0% 98%;
+          --primary-foreground: 240 5.9% 10%;
+          --secondary: 240 3.7% 15.9%;
+          --secondary-foreground: 0 0% 98%;
+          --muted: 240 3.7% 15.9%;
+          --muted-foreground: 240 5% 64.9%;
+          --accent: 240 3.7% 15.9%;
+          --accent-foreground: 0 0% 98%;
+          --destructive: 0 62.8% 30.6%;
+          --destructive-foreground: 0 0% 98%;
+          --border: 240 3.7% 15.9%;
+          --input: 240 3.7% 15.9%;
+          --ring: 240 4.9% 83.9%;
+        }
+      }
+    </style>
+    <style>
+      .home-link {
+        position: fixed;
+        z-index: 1;
+        top: 10px;
+        left: 10px;
+        display: flex;
+        align-items: center;
+        padding: 10px;
+        background: var(--primary);
+        color: var(--primary-foreground);
+        border-radius: 5px;
+        text-decoration: none;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      }
+
+      .home-link i.material-icons {
+        margin-right: 5px;
+      }
+
+      .home-link span {
+        font-size: 16px;
+      }
+
+      .recipe-container {
+        margin-top: 60px; /* Adjust this value if needed to avoid overlap with fixed header */
+      }
+    </style>
+  </head>
+  <body>
+    <a href="/home" class="home-link">
+      <i class="material-icons">home</i>
+      <span>Home</span>
+    </a>
+
+    <div class="recipe-container">
+      <% recipes.forEach(recipe => { %>
+      <div class="recipe-card" data-recipe-id="<%= recipe._id %>">
+        <div class="recipe-image-container">
+          <img
+            src="<%= recipe.image %>"
+            alt="<%= recipe.title %>"
+            class="recipe-image"
+          />
+          <a href="/recipe/<%= recipe._id %>">
+            <button class="view-more">View</button>
+          </a>
+        </div>
+
+        <div class="recipe-icons">
+          <div class="left-icons">
+            <div class="icon-with-count">
+              <span id="comment-count-<%= recipe._id %>" class="count"
+                ><%= recipe.comments %></span
+              >
+              <i
+                class="material-icons"
+                onclick="showCommentsModal('<%= recipe._id %>')"
+                >comment</i
+              >
+            </div>
+            <div class="icon-with-count">
+              <span id="like-count-<%= recipe._id %>" class="count"
+                ><%= recipe.likes %></span
+              >
+              <i
+                class="material-icons"
+                onclick="updateEngagement('<%= recipe._id %>', 'like')"
+                >favorite_border</i
+              >
+            </div>
+            <div class="icon-with-count">
+              <span id="share-count-<%= recipe._id %>" class="count"
+                ><%= recipe.shares %></span
+              >
+              <i
+                class="material-icons"
+                onclick="updateEngagement('<%= recipe._id %>', 'share')"
+                >share</i
+              >
+            </div>
+          </div>
+          <div class="icon-with-count">
+            <span id="save-count-<%= recipe._id %>" class="count"
+              ><%= recipe.saves %></span
+            >
+            <i
+              class="material-icons save"
+              onclick="updateEngagement('<%= recipe._id %>', 'save')"
+              >bookmark_border</i
+            >
+          </div>
+        </div>
+
+        <div class="recipe-info">
+          <h3><%= recipe.title %></h3>
+          <div class="recipe-details">
+            <i class="material-icons">schedule</i>
+            <p><%= recipe.time %></p>
+            <i class="material-icons cooking-icon">restaurant_menu</i>
+            <p class="difficulty"><%= recipe.difficulty %></p>
+            <br />
+          </div>
+          <div class="author">
+            <i class="material-icons">person</i>
+            <span class="author-username"><%= recipe.author %></span>
+          </div>
+          <div class="rating">
+            <% for (let i = 0; i < recipe.rating; i++) { %> ⭐ <% } %> (<%=
+            recipe.rating %>)
+          </div>
+        </div>
+      </div>
+      <% }) %>
+    </div>
+
+    <div id="comments-modal" class="modal flex justify-center items-center">
+      <div class="modal-content bg-white p-4 rounded-lg shadow-lg">
+        <span class="close-button">&times;</span>
+
+        <form id="comment-form" class="mb-4">
+          <input
+            type="text"
+            name="comment"
+            id=""
+            placeholder="Add a comment..."
+            class="border border-gray-300 rounded-md py-2 px-4 w-full"
+          />
+          <button
+            type="submit"
+            class="bg-primary text-primary-foreground hover:bg-primary/80 px-4 py-2 rounded-lg"
+          >
+            Submit
+          </button>
+        </form>
+
+        <h2 class="mb-4">Comments</h2>
+        <ul class="comments-list">
+          <!-- Comments will be dynamically inserted here -->
+        </ul>
+      </div>
+    </div>
+  </body>
+  <script>
+    // Show comments modal
+    async function showCommentsModal(recipeId) {
+      try {
+        // Populate and show modal with comments
+        const modal = document.getElementById("comments-modal");
+        const commentsList = modal.querySelector(".comments-list");
+        // Fetch comments from server
+        const response = await fetch(`/recipe/comments/${recipeId}`);
+        const data = await response.json();
+        if (data.success) {
+          console.log(data);
+
+          // Clear existing comments
+          commentsList.innerHTML = "";
+
+          // Append each comment to the list
+          data.comments.forEach((comment) => {
+            const listItem = document.createElement("li");
+            listItem.textContent = `${comment.user}: ${comment.text}`;
+            commentsList.appendChild(listItem);
+          });
+
+          // Show the modal
+          modal.style.display = "block";
+        }
+
+        // Handle form submission for adding a new comment
+        const commentForm = modal.querySelector("#comment-form");
+        commentForm.onsubmit = function (e) {
+          e.preventDefault();
+          const commentText = e.target.elements["comment"].value;
+
+          // Clear the input field
+          e.target.elements["comment"].value = "";
+
+          // Add the new comment
+          addComment(recipeId, commentText);
+          modal.style.display = "none";
+        };
+
+        // Close the modal when the close button is clicked
+        modal.querySelector(".close-button").onclick = function () {
+          modal.style.display = "none";
+        };
+
+        // Close the modal when clicking outside of the modal content
+        window.onclick = function (event) {
+          if (event.target === modal) {
+            modal.style.display = "none";
+          }
+        };
+      } catch (error) {
+        console.error("Error fetching comments:", error);
+        alert("Failed to load comments. Please try again later.");
+      }
+    }
+
+    // Add a comment to the server
+    function addComment(recipeId, commentText) {
+      fetch(`/recipe/engage/${recipeId}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          engagementType: "comment",
+          comment: commentText,
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            showCommentsModal(recipeId); // Refresh comments
+          }
+        });
+    }
+
+    // Update engagement data
+    async function updateEngagement(recipeId, type) {
+      await fetch(`/recipe/engage/${recipeId}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ engagementType: type }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            const recipe = data.Recipe_update;
+            console.log(data);
+            // Update the UI with new engagement data
+            document.getElementById(`comment-count-${recipeId}`).textContent =
+              recipe.comments.length;
+            document.getElementById(`like-count-${recipeId}`).textContent =
+              recipe.likes.length;
+            document.getElementById(`share-count-${recipeId}`).textContent =
+              recipe.shares.length;
+            document.getElementById(`save-count-${recipeId}`).textContent =
+              recipe.saves.length;
+          } else {
+            alert("An error occurred. Please try again.");
+          }
+        });
+
+      if (type === "share") {
+        copyLink(recipeId);
+      }
+    }
+
+    function copyLink(recipeId) {
+      const link = window.location.origin + "/recipe/" + recipeId;
+      navigator.clipboard
+        .writeText(link)
+        .then(() => {
+          alert("Link copied to clipboard!");
+        })
+        .catch((error) => {
+          console.error("Failed to copy link:", error);
+        });
+    }
+  </script>
+</html>

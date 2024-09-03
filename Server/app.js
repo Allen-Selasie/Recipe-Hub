@@ -24,6 +24,7 @@ const requireLogin = require('./Middleware/authMiddleware');
 const Category = require('./models/category');
 const Recipe = require('./models/recipe');
 const Card = require('./models/cards');
+const User = require('./models/user');
 
 
 //Environment variables
@@ -69,17 +70,32 @@ app.use(
  
 //Main Routes
 app.get("/",async (req,res)=>{
-  const recipes = await Recipe.getFeed();
+  const recipes = await Recipe.getFeatured();
   res.render("index",{recipes});
 })
 
 app.get("/home",requireLogin, async(req,res)=>{
-  const user = req.session.user;
+  let user = req.session.user;
   try {
     const recipes = await Recipe.getFeed(user._id);
-   
-  const categories = await Category.find();
-  res.render("home",{user, categories, recipes});
+    const feed = await Recipe.getFeed();
+
+    user = await User.findById(user._id);
+    const saved_recipes = user.saves;
+  const savedRecipesDetails = await Recipe.find({_id:{$in:saved_recipes}}).populate('author', 'username');
+    const savedRecipes = savedRecipesDetails.map(recipe => {
+      return {
+        _id: recipe._id,
+        title: recipe.title,
+         description: recipe.description,
+          author: recipe.author.username,
+      };
+    });
+
+   const categories = await Category.find();
+
+    res.render("home", { user, categories,recipes, savedRecipes });
+
 
   } catch (error) {
     console.log(error);

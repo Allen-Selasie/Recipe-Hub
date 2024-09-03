@@ -467,7 +467,7 @@ body.dark .switch::before{
 /* Discover Section*/
 #discover-section{
     font-family: Arial, sans-serif;
-    background-color: #f5f5f5;
+
     padding: 20px;
     margin: 30px;
     display: flex;
@@ -1094,7 +1094,7 @@ button.update {
     }
 
     
-    .modal {
+    #comments-modal {
         display: none;
         position: fixed;
         z-index: 1;
@@ -1127,5 +1127,16 @@ button.update {
         color: black;
         text-decoration: none;
         cursor: pointer;
+    }
+    
+    .icon-with-count {
+        display: flex;
+        align-items: center;
+        gap: 4px; /* Space between number and icon */
+    }
+    
+    .icon-with-count .count {
+        font-size: 14px;
+        font-weight: bold;
     }
     

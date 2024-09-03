@@ -42,7 +42,7 @@ UserRoutes.post("/create", async (req, res) => {
     // Mark the session as authenticated
     req.session.authenticated = true;
     req.session.user = Candidate;
-    return res.render("home", { username });
+    return res.redirect("/home");
   } catch (e) {
     console.error(e);
     return res.sendStatus(500);
@@ -309,7 +309,7 @@ UserRoutes.post('/add-recipe', upload.array('file',10), requireLogin, async (req
         console.log(newRecipe);
 
         await newRecipe.save();
-        res.status(201).json({ message: 'Recipe added successfully', sucess: true });
+        res.status(201).json({ message: 'Recipe added successfully', success: true });
     }catch (error) {
         console.error(error);
         res.status(500).send("Internal Server Error");
